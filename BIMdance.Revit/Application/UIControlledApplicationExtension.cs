@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace BIMdance.Revit;
+namespace BIMdance.Revit.Application;
 
 public static class UIControlledApplicationExtension
 {

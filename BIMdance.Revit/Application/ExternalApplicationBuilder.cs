@@ -1,6 +1,6 @@
 // ReSharper disable InconsistentNaming
 
-namespace BIMdance.Revit;
+namespace BIMdance.Revit.Application;
 
 public class ExternalApplicationBuilder
 {
@@ -89,8 +89,8 @@ public class ExternalApplicationBuilder
         
         serviceCollection.AddSingleton(x => x);
         serviceCollection.AddSingleton<ServiceScope>();
-        serviceCollection.AddSingleton(_ => new AppInfo(ApplicationName, isRevitStarted: true, revitVersion));
-        serviceCollection.AddSingleton(_ => new AppPaths(ApplicationName, revitVersion.FirstInt()));
+        serviceCollection.AddSingleton(_ => new AppInfo(ApplicationName, revitVersion));
+        serviceCollection.AddSingleton(_ => new AppPaths(ApplicationName, revitVersion));
         serviceCollection.AddSingleton(_ => UIControlledApplication);
         serviceCollection.AddSingleton(_ => UIControlledApplication.ActiveAddInId);
         serviceCollection.AddSingleton<RevitContext>();

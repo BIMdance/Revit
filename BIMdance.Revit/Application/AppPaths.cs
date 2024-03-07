@@ -9,7 +9,7 @@ public class AppPaths
     private readonly string _localApplicationData;
     private readonly string _families;
     
-    public AppPaths(string applicationName, int revitVersion)
+    public AppPaths(string applicationName, string revitVersion)
     {
         _applicationName = applicationName;
         _localApplicationData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -19,7 +19,7 @@ public class AppPaths
         ClearTemp();
     }
     
-    public int RevitVersion { get; }
+    public string RevitVersion { get; }
     
     public string AssemblyDirectory { get; }
     public string AppSettings => Path.Combine(Settings, $"{nameof(AppSettings)}.json");

@@ -2,7 +2,8 @@
 
 public static class Logger
 {
-    public static event EventHandler<Exception> OnError;
+    public static event EventHandler<Exception> OnException;
+    public static event EventHandler<string> OnError;
     public static event EventHandler<string> OnDebug;
     public static event EventHandler<string> OnInfo;
     public static event EventHandler<string> OnWarn;
@@ -10,7 +11,13 @@ public static class Logger
     public static void Error(Exception exception)
     {
         Console.WriteLine(exception);
-        OnError?.Invoke(null, exception);
+        OnException?.Invoke(null, exception);
+    }
+    
+    public static void Error(string message)
+    {
+        Console.WriteLine(message);
+        OnError?.Invoke(null, message);
     }
     
     public static void Debug(string message)
