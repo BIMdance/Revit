@@ -1,6 +1,4 @@
-﻿using System.Resources;
-
-namespace BIMdance.Revit.Ribbon.Definitions;
+﻿namespace BIMdance.Revit.Ribbon.Definitions;
 
 public class CommandDefinition
 {

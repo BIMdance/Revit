@@ -51,7 +51,7 @@ public class RibbonFactory
         return CurrentRevitRibbonPanel = ribbonPanel;
     }
 
-    public RevitRibbonItem AddPushButton(DefinitionExternalCommand externalCommand, RibbonVisible ribbonVisible = RibbonVisible.All, Func<bool> visibleFunc = null)
+    public RevitRibbonItem AddPushButton(ExternalCommandDefinition externalCommand, RibbonVisible ribbonVisible = RibbonVisible.All, Func<bool> visibleFunc = null)
     {
         if (CurrentRevitRibbonPanel == null) throw new NullReferenceException($"{nameof(CurrentRevitRibbonPanel)}: {typeof(RevitRibbonPanel)}");
         var ribbonButton = _ribbonItemFactory.CreatePushButton(CurrentRevitRibbonPanel, externalCommand);
@@ -59,7 +59,7 @@ public class RibbonFactory
         return ribbonButton;
     }
 
-    public RevitRibbonItem AddPushButton(DefinitionExternalCommand externalCommand, Func<View, bool> visibleFunc)
+    public RevitRibbonItem AddPushButton(ExternalCommandDefinition externalCommand, Func<View, bool> visibleFunc)
     {
         if (CurrentRevitRibbonPanel == null) throw new NullReferenceException($"{nameof(CurrentRevitRibbonPanel)}: {typeof(RevitRibbonPanel)}");
         var ribbonButton = _ribbonItemFactory.CreatePushButton(CurrentRevitRibbonPanel, externalCommand);
@@ -67,7 +67,7 @@ public class RibbonFactory
         return ribbonButton;
     }
 
-    public RevitRibbonItem AddPushButton(DefinitionExternalCommand externalCommand, ViewType checkViewType, Func<View, bool> visibleFunc = null)
+    public RevitRibbonItem AddPushButton(ExternalCommandDefinition externalCommand, ViewType checkViewType, Func<View, bool> visibleFunc = null)
     {
         if (CurrentRevitRibbonPanel == null) throw new NullReferenceException($"{nameof(CurrentRevitRibbonPanel)}: {typeof(RevitRibbonPanel)}");
         var ribbonButton = _ribbonItemFactory.CreatePushButton(CurrentRevitRibbonPanel, externalCommand);
@@ -75,7 +75,7 @@ public class RibbonFactory
         return ribbonButton;
     }
 
-    public PulldownButton AddPulldownButton(List<DefinitionExternalCommand> externalCommands, DefinitionExternalCommand pulldownButtonDefinition = null, RibbonVisible ribbonVisible = RibbonVisible.All)
+    public PulldownButton AddPulldownButton(List<ExternalCommandDefinition> externalCommands, ExternalCommandDefinition pulldownButtonDefinition = null, RibbonVisible ribbonVisible = RibbonVisible.All)
     {
         pulldownButtonDefinition ??= externalCommands.FirstOrDefault() ?? throw new ArgumentNullException($"{nameof(pulldownButtonDefinition)}");
         var pulldownButton = _ribbonItemFactory.CreatePulldownButton(CurrentRevitRibbonPanel, pulldownButtonDefinition);
@@ -87,7 +87,7 @@ public class RibbonFactory
         return pulldownButton;
     }
 
-    public PulldownButton AddPulldownButton(Dictionary<DefinitionExternalCommand, RibbonVisible> ribbonItemsParameters, DefinitionExternalCommand pulldownButtonDefinition = null)
+    public PulldownButton AddPulldownButton(Dictionary<ExternalCommandDefinition, RibbonVisible> ribbonItemsParameters, ExternalCommandDefinition pulldownButtonDefinition = null)
     {
         pulldownButtonDefinition ??= ribbonItemsParameters.Keys.FirstOrDefault() ?? throw new ArgumentNullException($"{nameof(pulldownButtonDefinition)}");
         var pulldownButton = _ribbonItemFactory.CreatePulldownButton(CurrentRevitRibbonPanel, pulldownButtonDefinition);

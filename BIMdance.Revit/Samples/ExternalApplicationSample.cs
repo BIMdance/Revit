@@ -11,7 +11,11 @@ public class ExternalApplicationSample : IExternalApplication
                 serviceCollection.AddToScope<AppPaths>(currentScope);
             })
             .AddRevitAsync()
-            .AddRibbon((builder, ribbonFactory) => { })
+            .AddRibbon((builder, ribbonFactory) =>
+            {
+                ribbonFactory.CreateRibbonPanel(builder.ApplicationName, RibbonVisible.All);
+                ribbonFactory.AddPushButton(new CommandSample());
+            })
             .RegisterUpdaters(() => { });
         
         return Result.Succeeded;

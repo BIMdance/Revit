@@ -1,6 +1,6 @@
 namespace BIMdance.Revit.Ribbon.Definitions;
 
-public abstract class DefinitionExternalCommand : IExternalCommand
+public abstract class ExternalCommandDefinition : IExternalCommand
 {
     private readonly string _commandName;
     private readonly string _currentSessionGuid;
@@ -17,12 +17,12 @@ public abstract class DefinitionExternalCommand : IExternalCommand
         
     public CommandDefinition Definition { get; }
 
-    protected DefinitionExternalCommand(
+    protected ExternalCommandDefinition(
         string caption, Bitmap largeImage = null, Bitmap image = null,
         string longDescription = null, string toolTipText = null, Bitmap toolTipImage = null) :
         this(Locator.ServiceProvider, caption, largeImage, image, longDescription, toolTipText, toolTipImage) { }
     
-    protected DefinitionExternalCommand(
+    protected ExternalCommandDefinition(
         IServiceProvider serviceProvider,
         string caption, Bitmap largeImage = null, Bitmap image = null,
         string longDescription = null, string toolTipText = null, Bitmap toolTipImage = null)
@@ -74,6 +74,10 @@ public abstract class DefinitionExternalCommand : IExternalCommand
         {
             return Result.Cancelled;
         }
+        catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+        {
+            return Result.Cancelled;
+        }
         catch (Exception exception)
         {
             Logger.Error(exception);
@@ -83,10 +87,7 @@ public abstract class DefinitionExternalCommand : IExternalCommand
         {
             try
             {
-                // RibbonBindingProperties.UpdateItemValues();
-                // DialogStackView.Reset();
-                // ProgressBarController.Close();
-                // ReportErrors.Reset();
+                
             }
             catch (Exception exception)
             {

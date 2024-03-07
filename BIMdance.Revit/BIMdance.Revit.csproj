@@ -123,7 +123,7 @@
         <Compile Include="RevitContext.cs" />
         <Compile Include="Ribbon\Bindings\RibbonCheckedBinding.cs" />
         <Compile Include="Ribbon\Definitions\CommandDefinition.cs" />
-        <Compile Include="Ribbon\Definitions\DefinitionExternalCommand.cs" />
+        <Compile Include="Ribbon\Definitions\ExternalCommandDefinition.cs" />
         <Compile Include="Ribbon\Definitions\EmptyRibbonDefinition.cs" />
         <Compile Include="Ribbon\Definitions\IRibbonDefinition.cs" />
         <Compile Include="Ribbon\Definitions\RibbonCheckBoxDefinition.cs" />
@@ -134,6 +134,7 @@
         <Compile Include="Ribbon\RibbonItemFactory.cs" />
         <Compile Include="Ribbon\RibbonVisible.cs" />
         <Compile Include="Ribbon\RibbonVisibleUtils.cs" />
+        <Compile Include="Samples\CommandSample.cs" />
         <Compile Include="Samples\ExternalApplicationSample.cs" />
         <Compile Include="Usings.cs" />
         <Compile Include="Utils\AssemblyUtils.cs" />

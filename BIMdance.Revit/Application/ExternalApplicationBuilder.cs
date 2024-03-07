@@ -6,8 +6,8 @@ public class ExternalApplicationBuilder
 {
     private static readonly Func<IServiceProvider, object> CurrentScope = provider => provider.Get<ServiceScope>()?.Current;
 
-    private string ApplicationName { get; }
-    private UIControlledApplication UIControlledApplication { get; }
+    public string ApplicationName { get; }
+    public UIControlledApplication UIControlledApplication { get; }
 
     public ExternalApplicationBuilder(string applicationName, UIControlledApplication uiControlledApplication)
     {

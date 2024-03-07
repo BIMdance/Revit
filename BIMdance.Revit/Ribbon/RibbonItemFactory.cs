@@ -83,14 +83,14 @@ public class RibbonItemFactory
         
     public RevitRibbonItem CreatePushButton(
         RevitRibbonPanel ribbonPanel,
-        DefinitionExternalCommand definitionExternalCommand)
+        ExternalCommandDefinition definitionExternalCommand)
     {
         var pushButtonData = CreatePushButtonData(definitionExternalCommand);
         return ribbonPanel.AddItem(pushButtonData);
     }
 
     public PushButtonData CreatePushButtonData(
-        DefinitionExternalCommand definitionExternalCommand)
+        ExternalCommandDefinition definitionExternalCommand)
     {
         var definition = definitionExternalCommand.Definition;
         var name = $"pb_{definition.Name}";
@@ -111,7 +111,7 @@ public class RibbonItemFactory
 
     public PulldownButton CreatePulldownButton(
         RevitRibbonPanel ribbonPanel,
-        DefinitionExternalCommand pulldownButtonDefinition)
+        ExternalCommandDefinition pulldownButtonDefinition)
     {
         var definition = pulldownButtonDefinition.Definition;
         var pulldownButtonData = new PulldownButtonData("PulldownButtonData" + _indexPulldownButton++, definition.Caption)
