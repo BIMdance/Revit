@@ -13,11 +13,9 @@ public class RevitContext
     public RevitContext(UIControlledApplication uiControlledApplication)
     {
         UIControlledApplication = uiControlledApplication;
-        IsRevitStarted = true;
         Version = UIControlledApplication.ControlledApplication.VersionNumber.FirstInt();
     }
         
-    public bool IsRevitStarted { get; }
     public UIControlledApplication UIControlledApplication { get; }
     public UIApplication UIApplication { get; set; }
     public UIDocument UIDocument => UIApplication.ActiveUIDocument;
@@ -35,6 +33,5 @@ public class RevitContext
         }
     }
 
-    public string AssemblyPath { get; set; }
     public int Version { get; }
 }

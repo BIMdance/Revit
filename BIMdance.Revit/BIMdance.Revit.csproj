@@ -45,6 +45,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Application\AppInfo.cs" />
+        <Compile Include="Application\AppPaths.cs" />
         <Compile Include="Async\Entities\DefaultResponseHandler.cs" />
         <Compile Include="Async\Entities\FutureExternalEvent.cs" />
         <Compile Include="Async\Extensions\ExternalEventResultHandlerExtensions.cs" />
@@ -108,6 +109,8 @@
         <Compile Include="DependencyInjection\ServiceProviderMode.cs" />
         <Compile Include="DependencyInjection\ServiceProviderOptions.cs" />
         <Compile Include="DependencyInjection\ServiceScope.cs" />
+        <Compile Include="ExternalApplicationBuilder.cs" />
+        <Compile Include="UIControlledApplicationExtension.cs" />
         <Compile Include="Logger.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RevitContext.cs" />
@@ -124,10 +127,14 @@
         <Compile Include="Ribbon\RibbonItemFactory.cs" />
         <Compile Include="Ribbon\RibbonVisible.cs" />
         <Compile Include="Ribbon\RibbonVisibleUtils.cs" />
+        <Compile Include="Samples\ExternalApplicationSample.cs" />
         <Compile Include="Usings.cs" />
         <Compile Include="Utils\AssemblyUtils.cs" />
         <Compile Include="Utils\BitmapUtils.cs" />
         <Compile Include="Utils\CultureUtils.cs" />
+        <Compile Include="Utils\EnumerableExtension.cs" />
+        <Compile Include="Utils\FileUtils.cs" />
+        <Compile Include="Utils\NameUtils.cs" />
         <Compile Include="Utils\Observer\Observable.cs" />
         <Compile Include="Utils\Observer\Unsubscriber.cs" />
         <Compile Include="Utils\StringUtils.cs" />

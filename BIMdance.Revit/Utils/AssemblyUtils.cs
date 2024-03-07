@@ -6,12 +6,12 @@ public static class AssemblyUtils
         new(GetApplicationFileVersionInfo().ProductVersion);
 
     public static FileVersionInfo GetApplicationFileVersionInfo() =>
-        FileVersionInfo.GetVersionInfo(GetExecutingAssemblyFile());
+        FileVersionInfo.GetVersionInfo(GetExecutingAssemblyPath());
 
     public static string GetExecutingAssemblyDirectory() =>
-        Path.GetDirectoryName(GetExecutingAssemblyFile());
+        Path.GetDirectoryName(GetExecutingAssemblyPath());
 
-    public static string GetExecutingAssemblyFile()
+    public static string GetExecutingAssemblyPath()
     {
         var assembly = Assembly.GetCallingAssembly();
         var filePath = assembly.CodeBase.Replace(@"file:///", string.Empty);
@@ -31,7 +31,7 @@ public static class AssemblyUtils
     
     public static void LoadProjectAssemblies(params string[] assemblyNames)
     {
-        var assemblyDirectory = Path.GetDirectoryName(AssemblyUtils.GetExecutingAssemblyFile());
+        var assemblyDirectory = Path.GetDirectoryName(AssemblyUtils.GetExecutingAssemblyPath());
 
         if (string.IsNullOrWhiteSpace(assemblyDirectory))
         {

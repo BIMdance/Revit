@@ -7,16 +7,16 @@ namespace BIMdance.Revit.Ribbon;
 
 public class RibbonFactory
 {
-    private readonly UIControlledApplication _application;
+    private readonly UIControlledApplication _uiControlledApplication;
     private readonly RibbonItemFactory _ribbonItemFactory;
     private readonly RibbonVisibleUtils _ribbonVisibleUtils;
     private RevitRibbonPanel _currentRevitRibbonPanel;
     private string _ribbonName;
 
-    public RibbonFactory(RevitContext revitContext, RibbonVisibleUtils ribbonVisibleUtils)
+    public RibbonFactory(UIControlledApplication uiControlledApplication, RibbonVisibleUtils ribbonVisibleUtils)
     {
-        _application = revitContext.UIControlledApplication;
-        _ribbonItemFactory = new RibbonItemFactory(revitContext.AssemblyPath ?? throw new InvalidOperationException($"Set value of {nameof(RevitContext)}{nameof(RevitContext.AssemblyPath)} before calling {nameof(RibbonFactory)}"));
+        _uiControlledApplication = uiControlledApplication;
+        _ribbonItemFactory = new RibbonItemFactory(AssemblyUtils.GetExecutingAssemblyPath());
         _ribbonVisibleUtils = ribbonVisibleUtils;
     }
 
@@ -38,7 +38,7 @@ public class RibbonFactory
     public RibbonTab CreateRibbonTab(string ribbonName, RibbonVisible ribbonVisible)
     {
         _ribbonName = ribbonName;
-        _application.CreateRibbonTab(_ribbonName);
+        _uiControlledApplication.CreateRibbonTab(_ribbonName);
         var ribbonTab = ComponentManager.Ribbon.Tabs.FirstOrDefault(x => x.Name == ribbonName);
         _ribbonVisibleUtils.SetVisibleCondition(ribbonTab, ribbonVisible);
         return ribbonTab;
@@ -46,7 +46,7 @@ public class RibbonFactory
 
     public RevitRibbonPanel CreateRibbonPanel(string panelName, RibbonVisible ribbonVisible, Func<bool> visibleFunc = null)
     {
-        var ribbonPanel = _application.CreateRibbonPanel(_ribbonName, panelName);
+        var ribbonPanel = _uiControlledApplication.CreateRibbonPanel(_ribbonName, panelName);
         _ribbonVisibleUtils.SetVisibleCondition(ribbonPanel, ribbonVisible, visibleFunc);
         return CurrentRevitRibbonPanel = ribbonPanel;
     }

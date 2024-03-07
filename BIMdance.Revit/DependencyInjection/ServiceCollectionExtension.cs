@@ -4,23 +4,23 @@ public static class ServiceCollectionExtension
 {
     public static void AddToScope<T>(
         this IServiceCollection services,
-        Func<IServiceProvider, object> scope)
+        Func<IServiceProvider, object> scopeFunc)
         where T : class
     {
         services.AddToScope(
             _ => typeof(T).GetConstructor(Type.EmptyTypes)?.Invoke(Array.Empty<object>()) as T,
-            scope);
+            scopeFunc);
     }
         
     public static void AddToScope<T>(
         this IServiceCollection services,
         Func<IServiceProvider, T> implementation,
-        Func<IServiceProvider, object> scope)
+        Func<IServiceProvider, object> scopeFunc)
         where T : class
     {
         services.AddTransient(serviceProvider =>
         {
-            var scopeObject = scope?.Invoke(serviceProvider);
+            var scopeObject = scopeFunc?.Invoke(serviceProvider);
 
             if (scopeObject == null)
                 throw new NullReferenceException($"{nameof(scopeObject)} was not be set.");
@@ -31,7 +31,10 @@ public static class ServiceCollectionExtension
                 return existedInScope;
 
             var newImplementation = implementation?.Invoke(serviceProvider);
-            serviceScope.Add(scopeObject, newImplementation);
+            
+            if (newImplementation is not null)
+                serviceScope.Add(scopeObject, newImplementation);
+            
             return newImplementation;
         });
     }
