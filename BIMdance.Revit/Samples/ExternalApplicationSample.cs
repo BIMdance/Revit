@@ -9,6 +9,14 @@ public class ExternalApplicationSample : IExternalApplication
             .AddServices((serviceCollection, currentScope) =>
             {
                 serviceCollection.AddToScope<AppPaths>(currentScope);
+
+                serviceCollection.AddSingleton<UpdaterManager>();
+                serviceCollection.AddSingleton<UpdateStatus<CableTray>>();
+                serviceCollection.AddSingleton<UpdaterSample>();
+                serviceCollection.AddSingleton(provider => new List<Updater>
+                {
+                    provider.Get<UpdaterSample>(),
+                });
             })
             .AddRevitAsync()
             .AddRibbon((builder, ribbonFactory) =>
@@ -16,7 +24,10 @@ public class ExternalApplicationSample : IExternalApplication
                 ribbonFactory.CreateRibbonPanel(builder.ApplicationName, RibbonVisible.All);
                 ribbonFactory.AddPushButton(new CommandSample());
             })
-            .RegisterUpdaters(() => { });
+            .RegisterUpdaters((builder, updaterManager) =>
+            {
+                updaterManager.RegisterUpdaters();
+            });
         
         return Result.Succeeded;
     }

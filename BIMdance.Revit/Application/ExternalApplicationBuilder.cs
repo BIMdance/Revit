@@ -8,6 +8,7 @@ public class ExternalApplicationBuilder
 
     public string ApplicationName { get; }
     public UIControlledApplication UIControlledApplication { get; }
+    public IServiceProvider ServiceProvider { get; private set; }
 
     public ExternalApplicationBuilder(string applicationName, UIControlledApplication uiControlledApplication)
     {
@@ -82,6 +83,13 @@ public class ExternalApplicationBuilder
         return this;
     }
 
+    public ExternalApplicationBuilder RegisterUpdaters(
+        Action<ExternalApplicationBuilder, UpdaterManager> registerUpdatersAction)
+    {
+        registerUpdatersAction(this, ServiceProvider.Get<UpdaterManager>());
+        return this;
+    }
+
     private ServiceCollection CreateServiceCollection()
     {
         var serviceCollection = new ServiceCollection();
@@ -102,10 +110,10 @@ public class ExternalApplicationBuilder
         return serviceCollection;
     }
 
-    private static void BuildServiceProvider(IServiceCollection serviceCollection)
+    private void BuildServiceProvider(IServiceCollection serviceCollection)
     {
-        var serviceProvider = serviceCollection.BuildServiceProvider();
-        Locator.Initialize(serviceProvider);
+        ServiceProvider = serviceCollection.BuildServiceProvider();
+        Locator.Initialize(ServiceProvider);
     }
 
     private RibbonFactory CreateRibbonFactory()
