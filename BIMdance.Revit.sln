@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMdance.Revit", "BIMdance.Revit\BIMdance.Revit.csproj", "{5FCA52F2-FCE2-4FBF-BA15-9877E64302E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMdance.Revit.ObsoleteAPI", "BIMdance.Revit.ObsoleteAPI\BIMdance.Revit.ObsoleteAPI.csproj", "{540723CA-ACCA-4ADE-86CC-ABD356C0BDFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -12,5 +14,9 @@ Global
 		{5FCA52F2-FCE2-4FBF-BA15-9877E64302E6}.Release|x64.Build.0 = Release|x64
 		{5FCA52F2-FCE2-4FBF-BA15-9877E64302E6}.Debug|x64.ActiveCfg = Debug|x64
 		{5FCA52F2-FCE2-4FBF-BA15-9877E64302E6}.Debug|x64.Build.0 = Debug|x64
+		{540723CA-ACCA-4ADE-86CC-ABD356C0BDFA}.Debug|x64.ActiveCfg = Debug|x64
+		{540723CA-ACCA-4ADE-86CC-ABD356C0BDFA}.Debug|x64.Build.0 = Debug|x64
+		{540723CA-ACCA-4ADE-86CC-ABD356C0BDFA}.Release|x64.ActiveCfg = Release|x64
+		{540723CA-ACCA-4ADE-86CC-ABD356C0BDFA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal

@@ -50,7 +50,70 @@
         <Compile Include="Application\ExternalApplicationBuilder.cs" />
         <Compile Include="Application\UIControlledApplicationExtension.cs" />
         <Compile Include="Logger.cs" />
+        <Compile Include="Logic\CableRouting\BuildingConverter.cs" />
+        <Compile Include="Logic\CableRouting\ElectricalSystemConverter.cs" />
+        <Compile Include="Logic\CableRouting\Model\BuildingProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\CableRoutingSetting.cs" />
+        <Compile Include="Logic\CableRouting\Model\CableTrayConduitBaseProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\CableTrayConduitFittingProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\CableTrayConduitOrientation.cs" />
+        <Compile Include="Logic\CableRouting\Model\CableTrayProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\ConduitProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\ConnectionTopology.cs" />
+        <Compile Include="Logic\CableRouting\Model\ConnectorProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\ElectricalElementProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\ElectricalSystemProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\ElementProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\LevelProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\Normal.cs" />
+        <Compile Include="Logic\CableRouting\Model\RevitBuildingElements.cs" />
+        <Compile Include="Logic\CableRouting\Model\RoomProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\SegmentProxy.cs" />
+        <Compile Include="Logic\CableRouting\Model\SharedParameters.cs" />
+        <Compile Include="Logic\CableRouting\Model\TraceElement.cs" />
+        <Compile Include="Logic\CableRouting\Model\TraceNetwork.cs" />
+        <Compile Include="Logic\CableRouting\Model\TraceNetworks.cs" />
+        <Compile Include="Logic\CableRouting\Model\TracePath.cs" />
+        <Compile Include="Logic\CableRouting\Model\TracePathType.cs" />
+        <Compile Include="Logic\CableRouting\Model\Vector.cs" />
+        <Compile Include="Logic\CableRouting\Model\XYZProxy.cs" />
+        <Compile Include="Logic\CableRouting\NetworkCalculator.cs" />
+        <Compile Include="Logic\CableRouting\NetworkConverter.cs" />
+        <Compile Include="Logic\CableRouting\NetworkDrawer.cs" />
+        <Compile Include="Logic\CableRouting\NetworkElements.cs" />
+        <Compile Include="Logic\CableRouting\NetworkPathfinder.cs" />
+        <Compile Include="Logic\CableRouting\ProxyConverter.cs" />
+        <Compile Include="Logic\CableRouting\RevitMapper.cs" />
+        <Compile Include="Logic\CableRouting\SegmentFilter.cs" />
+        <Compile Include="Logic\CableRouting\Utils\GeometryUtils.cs" />
+        <Compile Include="Logic\CableRouting\ViewFilters\FilterGraphicSettings.cs" />
+        <Compile Include="Logic\CableRouting\ViewFilters\FilterManager.cs" />
+        <Compile Include="Logic\CableRouting\ViewFilters\FilterRuleMode.cs" />
+        <Compile Include="Logic\CableRouting\ViewFilters\FilterRuleParameter.cs" />
+        <Compile Include="Logic\ElementComparer.cs" />
+        <Compile Include="Logic\Parameters\ForgeConverter.cs" />
+        <Compile Include="Logic\Parameters\ParameterTypeConverter.cs" />
+        <Compile Include="Logic\Parameters\ParameterUtils.cs" />
+        <Compile Include="Logic\Parameters\Shared\BaseSharedParameterDefinition.cs" />
+        <Compile Include="Logic\Parameters\Shared\DefinitionFileUtils.cs" />
+        <Compile Include="Logic\Parameters\Shared\ProjectSharedParameter.cs" />
+        <Compile Include="Logic\Parameters\Shared\SharedParameterDefinition.cs" />
+        <Compile Include="Logic\Parameters\Shared\SharedParametersUtils.cs" />
+        <Compile Include="Logic\RevitProxy\DisplayUnitTypeProxy.cs" />
+        <Compile Include="Logic\RevitProxy\FamilyInstanceReferenceTypeProxy.cs" />
+        <Compile Include="Logic\RevitProxy\ParameterGroupProxy.cs" />
+        <Compile Include="Logic\RevitProxy\ParameterTypeProxy.cs" />
+        <Compile Include="Logic\RevitProxy\UnitTypeProxy.cs" />
+        <Compile Include="Logic\RevitVersions\.RevitVersionResolver.cs" />
+        <Compile Include="Logic\RevitVersions\Revit2017.cs" />
+        <Compile Include="Logic\RevitVersions\Revit2019.cs" />
+        <Compile Include="Logic\RevitVersions\Revit2021.cs" />
+        <Compile Include="Logic\RevitVersions\Revit2022.cs" />
+        <Compile Include="Logic\RevitVersions\Revit2024.cs" />
+        <Compile Include="Logic\SharedParameterGuids.cs" />
+        <Compile Include="Logic\SharedParameters.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Resources\RevitSourceFiles.Designer.cs" />
         <Compile Include="Resources\TransactionNames.Designer.cs">
           <DesignTime>True</DesignTime>
           <AutoGen>True</AutoGen>
@@ -80,6 +143,7 @@
         <Compile Include="Utils\Async\Utils\TaskUtils.cs" />
         <Compile Include="Utils\Async\Utils\UnlockKey.cs" />
         <Compile Include="Utils\BitmapUtils.cs" />
+        <Compile Include="Utils\CollectionExtension.cs" />
         <Compile Include="Utils\CultureUtils.cs" />
         <Compile Include="Utils\DependencyInjection\IServiceCollection.cs" />
         <Compile Include="Utils\DependencyInjection\IServiceScope.cs" />
@@ -129,11 +193,16 @@
         <Compile Include="Utils\DependencyInjection\ServiceScope.cs" />
         <Compile Include="Utils\DocumentExtension.cs" />
         <Compile Include="Utils\DocumentTransactionExtension.cs" />
+        <Compile Include="Utils\DoubleExtension.cs" />
         <Compile Include="Utils\EnumerableExtension.cs" />
+        <Compile Include="Utils\FamilyInstanceExtension.cs" />
         <Compile Include="Utils\FileUtils.cs" />
+        <Compile Include="Utils\FilterUtils.cs" />
         <Compile Include="Utils\NameUtils.cs" />
         <Compile Include="Utils\Observer\Observable.cs" />
         <Compile Include="Utils\Observer\Unsubscriber.cs" />
+        <Compile Include="Utils\RevitConnectorUtils.cs" />
+        <Compile Include="Utils\RevitIdEqualityComparer.cs" />
         <Compile Include="Utils\Ribbon\Bindings\RibbonCheckedBinding.cs" />
         <Compile Include="Utils\Ribbon\Definitions\CommandDefinition.cs" />
         <Compile Include="Utils\Ribbon\Definitions\EmptyRibbonDefinition.cs" />
@@ -147,7 +216,9 @@
         <Compile Include="Utils\Ribbon\RibbonItemFactory.cs" />
         <Compile Include="Utils\Ribbon\RibbonVisible.cs" />
         <Compile Include="Utils\Ribbon\RibbonVisibleUtils.cs" />
+        <Compile Include="Utils\StringComparer.cs" />
         <Compile Include="Utils\StringUtils.cs" />
+        <Compile Include="Utils\UnitConverter.cs" />
         <Compile Include="Utils\Updaters\Updater.cs" />
         <Compile Include="Utils\Updaters\UpdaterManager.cs" />
         <Compile Include="Utils\Updaters\UpdateStatus.cs" />
@@ -157,6 +228,9 @@
       <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2024.0.0" />
     </ItemGroup>
     <ItemGroup>
+      <EmbeddedResource Include="Resources\RevitSourceFiles.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
       <EmbeddedResource Include="Resources\TransactionNames.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>TransactionNames.Designer.cs</LastGenOutput>
@@ -167,6 +241,15 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Updaters\" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\BIMdance.Revit.ObsoleteAPI\BIMdance.Revit.ObsoleteAPI.csproj">
+        <Project>{540723ca-acca-4ade-86cc-abd356c0bdfa}</Project>
+        <Name>BIMdance.Revit.ObsoleteAPI</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\Files\SharedParameters_RU.txt" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

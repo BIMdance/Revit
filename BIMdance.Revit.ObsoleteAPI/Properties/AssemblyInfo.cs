@@ -1,14 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BIMdance.Revit")]
-[assembly: AssemblyDescription("Set of useful tools for working with the Revit API")]
+[assembly: AssemblyTitle("BIMdance.Revit.ObsoleteAPI")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("BIMdance Limited")]
-[assembly: AssemblyProduct("BIMdance.Revit")]
-[assembly: AssemblyCopyright("Copyright © 2024 BIMdance")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("BIMdance.Revit.ObsoleteAPI")]
+[assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -18,7 +19,7 @@
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5FCA52F2-FCE2-4FBF-BA15-9877E64302E6")]
+[assembly: Guid("540723CA-ACCA-4ADE-86CC-ABD356C0BDFA")]
 
 // Version information for an assembly consists of the following four values:
 //

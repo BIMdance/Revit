@@ -60,11 +60,83 @@ namespace BIMdance.Revit.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Filters.
+        /// </summary>
+        internal static string AddFilters {
+            get {
+                return ResourceManager.GetString("AddFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cable Routes.
+        /// </summary>
+        internal static string CableRouting {
+            get {
+                return ResourceManager.GetString("CableRouting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         internal static string Change {
             get {
                 return ResourceManager.GetString("Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Cable Routing.
+        /// </summary>
+        internal static string DrawCableRouting {
+            get {
+                return ResourceManager.GetString("DrawCableRouting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Patterns.
+        /// </summary>
+        internal static string LinePatterns {
+            get {
+                return ResourceManager.GetString("LinePatterns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Styles.
+        /// </summary>
+        internal static string LineStyles {
+            get {
+                return ResourceManager.GetString("LineStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify element attributes.
+        /// </summary>
+        internal static string ModifyElementAttributes {
+            get {
+                return ResourceManager.GetString("ModifyElementAttributes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Parameters.
+        /// </summary>
+        internal static string Parameters_Add {
+            get {
+                return ResourceManager.GetString("Parameters_Add", resourceCulture);
             }
         }
     }

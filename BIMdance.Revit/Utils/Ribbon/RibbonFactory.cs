@@ -1,5 +1,4 @@
-﻿using BIMdance.Revit.Utils.Ribbon.Definitions;
-using AutodeskRibbonPanel = Autodesk.Windows.RibbonPanel;
+﻿using AutodeskRibbonPanel = Autodesk.Windows.RibbonPanel;
 using Color = System.Windows.Media.Color;
 using RevitRibbonItem = Autodesk.Revit.UI.RibbonItem;
 using RevitRibbonPanel = Autodesk.Revit.UI.RibbonPanel;

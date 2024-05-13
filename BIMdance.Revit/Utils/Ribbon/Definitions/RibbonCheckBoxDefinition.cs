@@ -1,6 +1,4 @@
-﻿using BIMdance.Revit.Utils.Ribbon.Bindings;
-
-namespace BIMdance.Revit.Utils.Ribbon.Definitions;
+﻿namespace BIMdance.Revit.Utils.Ribbon.Definitions;
 
 public class RibbonCheckBoxDefinition : IRibbonDefinition
 {

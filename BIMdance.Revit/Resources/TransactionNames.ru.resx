@@ -11,8 +11,32 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    
+
+    <data name="AddFilters" xml:space="preserve">
+        <value>Добавить фильтры</value>
+    </data>
+    <data name="CableRouting" xml:space="preserve">
+        <value>Кабельные трассы</value>
+    </data>
     <data name="Change" xml:space="preserve">
         <value>Изменить</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Удалить</value>
+    </data>
+    <data name="DrawCableRouting" xml:space="preserve">
+        <value>Показать привязку кабеля</value>
+    </data>
+    <data name="LinePatterns" xml:space="preserve">
+        <value>Образцы линий</value>
+    </data>
+    <data name="LineStyles" xml:space="preserve">
+        <value>Стили линий</value>
+    </data>
+    <data name="ModifyElementAttributes" xml:space="preserve">
+        <value>Редактировать атрибуты элемента</value>
+    </data>
+    <data name="Parameters_Add" xml:space="preserve">
+        <value>Добавить параметры</value>
     </data>
 </root>

@@ -37,6 +37,13 @@ global using Autodesk.Windows;
 global using Kivikko.Json;
 
 global using BIMdance.Revit.Application;
+global using BIMdance.Revit.Logic.CableRouting;
+global using BIMdance.Revit.Logic.CableRouting.Model;
+global using BIMdance.Revit.Logic.CableRouting.Utils;
+global using BIMdance.Revit.Logic.Parameters;
+global using BIMdance.Revit.Logic.Parameters.Shared;
+global using BIMdance.Revit.Logic.RevitProxy;
+global using BIMdance.Revit.Logic.RevitVersions;
 global using BIMdance.Revit.Resources;
 global using BIMdance.Revit.Utils;
 global using BIMdance.Revit.Utils.Async;
