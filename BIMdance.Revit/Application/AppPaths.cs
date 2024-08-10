@@ -32,7 +32,7 @@ public class AppPaths
     
     public void ClearTemp() => new DirectoryInfo(Temp)
         .GetFiles("*.*", SearchOption.AllDirectories)
-        .ForEach(file => FileUtils.Delete(file, exception => Debug.WriteLine(exception)));
+        .ForEach(file => FileUtils.Delete(file, Logger.Error));
     
     protected static string GetFolder(string parentDirectory, params string[] folderNames)
     {

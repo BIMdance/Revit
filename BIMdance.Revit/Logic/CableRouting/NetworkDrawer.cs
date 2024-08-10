@@ -1,15 +1,14 @@
-﻿using BIMdance.Revit.Logic.CableRouting.ViewFilters;
-using Color = Autodesk.Revit.DB.Color;
+﻿using Color = Autodesk.Revit.DB.Color;
 
 namespace BIMdance.Revit.Logic.CableRouting;
 
 public class NetworkDrawer
 {
-    private const string EdCableTraceBinding = "ED_Cable Trace Binding";
-    private const string EdDash1 = "ED_Dash_1";
-    private const string RouteFilterKey = "2D97D11D";
-    private const string CableTrayFillingFilterKey = "CBE7E5AE";
-
+    private const string EdCableTraceBinding = Constants.AppPrefix + "_Cable Trace Binding";
+    private const string EdDash1 = Constants.AppPrefix + "_Dash_1";
+    private const string RouteFilterKey = "71D64463";
+    private const string CableTrayFillingFilterKey = "939C3D99";
+    
     private readonly Document _document;
     private readonly ElectricalSystemConverter _electricalSystemConverter;
     private readonly NetworkElements _networkElements;
@@ -139,14 +138,14 @@ public class NetworkDrawer
     {
         if (element == null)
         {
-            Debug.WriteLine($"Element is NULL.", GetType().Namespace);
+            Logger.Debug($"Element is NULL.", MethodBase.GetCurrentMethod());
             return;
         }
 
         if (new UIDocument(_document).ActiveView is not ViewPlan viewPlan ||
             viewPlan.GenLevel == null)
         {
-            Debug.WriteLine($"ActiveView must be a ViewPlan.", GetType().Namespace);
+            Logger.Debug($"ActiveView must be a ViewPlan.", MethodBase.GetCurrentMethod());
             return;
         }
 
@@ -184,12 +183,12 @@ public class NetworkDrawer
             }
         }
         
-        var startPointProxy = new XYZProxy(element.LocationPoint);
+        var startPointProxy = new Point3D(element.LocationPoint);
         var endPointProxy = GetEndPoint(element);
 
         if (endPointProxy == null)
         {
-            Debug.WriteLine(new NullReferenceException(nameof(endPointProxy)));
+            Logger.Error(new NullReferenceException(nameof(endPointProxy)));
             return;
         }
 
@@ -198,14 +197,14 @@ public class NetworkDrawer
         endPointProxy.Z = level.Elevation;
 
         var length = startPointProxy.DistanceTo(endPointProxy);
-        var startPoint = RevitMapper.Map<XYZProxy, XYZ>(startPointProxy);
+        var startPoint = RevitMapper.Map<Point3D, XYZ>(startPointProxy);
 
         if (length > 0.02)
         {
             if (Math.Abs(startPointProxy.X - endPointProxy.X) < 1e-3 ||
                 Math.Abs(startPointProxy.Y - endPointProxy.Y) < 1e-3)
             {
-                CreateDetailCurves(viewPlan, Line.CreateBound(startPoint, RevitMapper.Map<XYZProxy, XYZ>(endPointProxy)));
+                CreateDetailCurves(viewPlan, Line.CreateBound(startPoint, RevitMapper.Map<Point3D, XYZ>(endPointProxy)));
             }
             else
             {
@@ -219,7 +218,7 @@ public class NetworkDrawer
         }
     }
 
-    private void GetSegments(XYZProxy startPointProxy, XYZProxy endPointProxy, Level level,
+    private void GetSegments(Point3D startPointProxy, Point3D endPointProxy, Level level,
         out Line curve1, out Line curve2)
     {
         var maxX = Math.Max(startPointProxy.X, endPointProxy.X);
@@ -227,9 +226,9 @@ public class NetworkDrawer
                           endPointProxy.X > startPointProxy.X && endPointProxy.Y > startPointProxy.Y
             ? new XYZ(maxX, Math.Min(startPointProxy.Y, endPointProxy.Y), level.Elevation)
             : new XYZ(maxX, Math.Max(startPointProxy.Y, endPointProxy.Y), level.Elevation);
-        var startPoint = RevitMapper.Map<XYZProxy, XYZ>(startPointProxy);
+        var startPoint = RevitMapper.Map<Point3D, XYZ>(startPointProxy);
         curve1 = Line.CreateBound(startPoint, middlePoint);
-        curve2 = Line.CreateBound(middlePoint, RevitMapper.Map<XYZProxy, XYZ>(endPointProxy));
+        curve2 = Line.CreateBound(middlePoint, RevitMapper.Map<Point3D, XYZ>(endPointProxy));
     }
 
     private void CreateDetailCurves(ViewPlan viewPlan, params Curve[] curves)
@@ -243,7 +242,7 @@ public class NetworkDrawer
         }
     }
 
-    private static XYZProxy GetEndPoint(ElectricalElementProxy element)
+    private static Point3D GetEndPoint(ElectricalElementProxy element)
     {
         var endPoint = element.TraceBinding switch
         {
@@ -252,7 +251,7 @@ public class NetworkDrawer
             _ => null
         };
 
-        return endPoint is not null ? new XYZProxy(endPoint) : null;
+        return endPoint is not null ? new Point3D(endPoint) : null;
     }
 
     public void DrawRoute(ElectricalSystem electricalSystem)
@@ -427,7 +426,7 @@ public class NetworkDrawer
         if (_document.ActiveView is not ViewPlan viewPlan ||
             viewPlan.GenLevel == null)
         {
-            Debug.WriteLine($"ActiveView must be a ViewPlan.", GetType().Namespace);
+            Logger.Error($"ActiveView must be a ViewPlan.", MethodBase.GetCurrentMethod());
             return;
         }
 

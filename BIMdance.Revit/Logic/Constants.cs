@@ -4,6 +4,7 @@ namespace BIMdance.Revit.Logic;
 
 public static class Constants
 {
+    public const string AppPrefix = "APP"; // TODO
     public static class Lookup
     {
         public static class ColumnType

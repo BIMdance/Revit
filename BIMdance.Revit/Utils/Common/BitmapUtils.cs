@@ -117,7 +117,7 @@ public static class BitmapUtils
         }
         catch (Exception exception)
         {
-            Debug.WriteLine(exception);
+            Logger.Error(exception);
             return null;
         }
     }

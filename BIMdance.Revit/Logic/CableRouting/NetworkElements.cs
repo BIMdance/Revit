@@ -439,7 +439,7 @@ public class NetworkElements
     }
 
     private static CableTrayConduitBaseProxy FindNearestTraceElement(
-        XYZProxy xyz, List<CableTrayConduitBaseProxy> traceElements, int idTraceNetwork = -1)
+        Point3D xyz, List<CableTrayConduitBaseProxy> traceElements, int idTraceNetwork = -1)
     {
         if (idTraceNetwork >= 0 &&
             false == traceElements.Any(n => (n.TraceNetwork?.Id ?? -1) == idTraceNetwork))
