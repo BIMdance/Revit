@@ -48,6 +48,7 @@
         <Compile Include="Application\AppPaths.cs" />
         <Compile Include="Application\AppSettings.cs" />
         <Compile Include="Application\ExternalApplicationBuilder.cs" />
+        <Compile Include="Application\LoggerBuilder.cs" />
         <Compile Include="Application\UIControlledApplicationExtension.cs" />
         <Compile Include="Logger.cs" />
         <Compile Include="Logic\CableRouting\BuildingConverter.cs" />

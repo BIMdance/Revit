@@ -6,6 +6,12 @@ public class ExternalApplicationSample : IExternalApplication
     {
         application
             .StartBuilding("Sample")
+            .AddLogging(logging => logging
+                .OnException(exception => { })
+                .OnError(message => { })
+                .OnDebug(message => { })
+                .OnInfo(message => { })
+                .OnWarn(message => { }))
             .AddServices((serviceCollection, currentScope) =>
             {
                 serviceCollection.AddToScope<AppPaths>(currentScope);

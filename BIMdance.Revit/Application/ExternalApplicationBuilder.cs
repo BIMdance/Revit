@@ -16,6 +16,14 @@ public class ExternalApplicationBuilder
         UIControlledApplication = uiControlledApplication;
     }
     
+    public ExternalApplicationBuilder AddLogging(
+        Action<LoggerBuilder> logging)
+    {
+        var loggerBuilder = new LoggerBuilder(ServiceProvider);
+        logging.Invoke(loggerBuilder);
+        return this;
+    }
+    
     public ExternalApplicationBuilder AddServices()
     {
         BuildServiceProvider(CreateServiceCollection());
