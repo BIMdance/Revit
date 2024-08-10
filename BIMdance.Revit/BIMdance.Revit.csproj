@@ -199,11 +199,16 @@
         <Compile Include="Utils\FamilyInstanceExtension.cs" />
         <Compile Include="Utils\FileUtils.cs" />
         <Compile Include="Utils\FilterUtils.cs" />
+        <Compile Include="Utils\LookupTableUtils.cs" />
         <Compile Include="Utils\NameUtils.cs" />
         <Compile Include="Utils\Observer\Observable.cs" />
         <Compile Include="Utils\Observer\Unsubscriber.cs" />
+        <Compile Include="Utils\ReferenceUtils.cs" />
         <Compile Include="Utils\RevitConnectorUtils.cs" />
         <Compile Include="Utils\RevitIdEqualityComparer.cs" />
+        <Compile Include="Utils\RevitKeyPress.cs" />
+        <Compile Include="Utils\RevitOptions.cs" />
+        <Compile Include="Utils\RevitPickUtils.cs" />
         <Compile Include="Utils\Ribbon\Bindings\RibbonCheckedBinding.cs" />
         <Compile Include="Utils\Ribbon\Definitions\CommandDefinition.cs" />
         <Compile Include="Utils\Ribbon\Definitions\EmptyRibbonDefinition.cs" />
@@ -217,12 +222,14 @@
         <Compile Include="Utils\Ribbon\RibbonItemFactory.cs" />
         <Compile Include="Utils\Ribbon\RibbonVisible.cs" />
         <Compile Include="Utils\Ribbon\RibbonVisibleUtils.cs" />
+        <Compile Include="Utils\SelectionFilter.cs" />
         <Compile Include="Utils\StringComparer.cs" />
         <Compile Include="Utils\StringUtils.cs" />
         <Compile Include="Utils\UnitConverter.cs" />
         <Compile Include="Utils\Updaters\Updater.cs" />
         <Compile Include="Utils\Updaters\UpdaterManager.cs" />
         <Compile Include="Utils\Updaters\UpdateStatus.cs" />
+        <Compile Include="Utils\VisibilityUtils.cs" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Kivikko.Json" Version="1.0.13" />
