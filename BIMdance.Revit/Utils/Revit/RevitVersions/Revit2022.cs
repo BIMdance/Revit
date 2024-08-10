@@ -19,6 +19,12 @@ internal static class Revit2022
             return familyManager.AddParameter(externalDefinition, groupId, isInstance);
         }
     }
+    
+    public static class Formats
+    {
+        public static FormatOptions GetFormatOptions(DisplayUnitTypeProxy displayUnitType) =>
+            new(ForgeConverter.GetDisplayUnitId(displayUnitType));
+    }
 
     public static class Parameters
     {

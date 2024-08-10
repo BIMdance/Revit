@@ -48,15 +48,20 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="ElementId2016.cs" />
-        <Compile Include="FamilyManagerRevit2016.cs" />
-        <Compile Include="GraphicsRevit2016.cs" />
-        <Compile Include="MEPModelRevit2016.cs" />
-        <Compile Include="OverrideGraphicSettingsRevit2016.cs" />
-        <Compile Include="ParameterFilterElementRevit2016.cs" />
-        <Compile Include="ParametersRevit2016.cs" />
+        <Compile Include="Revit2016.Geometry.cs" />
+        <Compile Include="Revit2016.Views.cs" />
+        <Compile Include="Revit2016.InternalDefinitions.cs" />
+        <Compile Include="Revit2016.ElementId.cs" />
+        <Compile Include="Revit2016.FamilyManager.cs" />
+        <Compile Include="Revit2016.Formats.cs" />
+        <Compile Include="Revit2016.Graphics.cs" />
+        <Compile Include="Revit2016.MEPModel.cs" />
+        <Compile Include="Revit2016.Filters.cs" />
+        <Compile Include="Revit2016.Parameters.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="Units2016.cs" />
+        <Compile Include="Revit2016.Schedules.cs" />
+        <Compile Include="Revit2016.Units.cs" />
+        <Compile Include="Usings.cs" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2016.0.0" />

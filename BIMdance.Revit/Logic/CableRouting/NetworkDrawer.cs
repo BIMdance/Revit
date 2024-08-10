@@ -304,7 +304,7 @@ public class NetworkDrawer
             if (electricalSystemIdsParameter == null)
                 continue;
             
-            var familyInstanceSystemIds = RevitVersionResolver.Electrical.GetElectricalSystems(familyInstance)
+            var familyInstanceSystemIds = RevitVersionResolver.MEPModel.GetElectricalSystems(familyInstance)
                 .Select(x => x.Id.GetValue()).ToList();
 
             var formatElectricalSystemIds = familyInstanceSystemIds.Contains(electricalSystem.Id.GetValue())
@@ -325,7 +325,7 @@ public class NetworkDrawer
 
     private static void SetElectricalSystemIds(FamilyInstance familyInstance)
     {
-        var familyInstanceSystems = RevitVersionResolver.Electrical.GetElectricalSystems(familyInstance);
+        var familyInstanceSystems = RevitVersionResolver.MEPModel.GetElectricalSystems(familyInstance);
         var electricalSystemIds = $"#{string.Join("#", familyInstanceSystems.Select(x => x.Id.GetValue()))}#";
         familyInstance.get_Parameter(Constants.SharedParameters.ElectricalSystemIds)?.Set(electricalSystemIds);
     }

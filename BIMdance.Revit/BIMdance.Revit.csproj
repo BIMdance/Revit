@@ -207,6 +207,7 @@
         <Compile Include="Utils\Revit\RevitPickUtils.cs" />
         <Compile Include="Utils\Revit\RevitVersions\.RevitVersionResolver.cs" />
         <Compile Include="Utils\Revit\RevitVersions\Revit2017.cs" />
+        <Compile Include="Utils\Revit\RevitVersions\Revit2018.cs" />
         <Compile Include="Utils\Revit\RevitVersions\Revit2019.cs" />
         <Compile Include="Utils\Revit\RevitVersions\Revit2021.cs" />
         <Compile Include="Utils\Revit\RevitVersions\Revit2022.cs" />
