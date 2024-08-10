@@ -130,9 +130,8 @@ public static class RevitVersionResolver
             return newParameter;
         }
         
-        public static FamilyParameter AddFamilyParameter(FamilyManager familyManager, string parameterName, ParameterTypeProxy parameterType, ParameterGroupProxy builtInParameterGroup, bool isInstance)
-        {
-            return RevitVersionNumber < 2022
+        public static FamilyParameter AddFamilyParameter(FamilyManager familyManager, string parameterName, ParameterTypeProxy parameterType, ParameterGroupProxy builtInParameterGroup, bool isInstance) =>
+            RevitVersionNumber < 2022
                 ? Revit2016.FamilyManager.AddParameter(
                     familyManager,
                     parameterName,
@@ -145,11 +144,9 @@ public static class RevitVersionResolver
                     parameterType,
                     builtInParameterGroup,
                     isInstance);
-        }
-        
-        public static FamilyParameter AddFamilyParameter(FamilyManager familyManager, ExternalDefinition externalDefinition, ParameterGroupProxy builtInParameterGroup, bool isInstance)
-        {
-            return RevitVersionNumber < 2022
+
+        public static FamilyParameter AddFamilyParameter(FamilyManager familyManager, ExternalDefinition externalDefinition, ParameterGroupProxy builtInParameterGroup, bool isInstance) =>
+            RevitVersionNumber < 2022
                 ? Revit2016.FamilyManager.AddParameter(
                     familyManager,
                     externalDefinition,
@@ -160,11 +157,9 @@ public static class RevitVersionResolver
                     externalDefinition,
                     builtInParameterGroup,
                     isInstance);
-        }
-        
-        public static FamilyParameter ReplaceFamilyParameter(FamilyManager familyManager, FamilyParameter familyParameter, ExternalDefinition externalDefinition, ParameterGroupProxy builtInParameterGroup, bool isInstance)
-        {
-            return RevitVersionNumber < 2022
+
+        public static FamilyParameter ReplaceFamilyParameter(FamilyManager familyManager, FamilyParameter familyParameter, ExternalDefinition externalDefinition, ParameterGroupProxy builtInParameterGroup, bool isInstance) =>
+            RevitVersionNumber < 2022
                 ? Revit2016.FamilyManager.ReplaceParameter(
                     familyManager,
                     familyParameter,
@@ -176,11 +171,9 @@ public static class RevitVersionResolver
                     externalDefinition,
                     builtInParameterGroup,
                     isInstance);
-        }
-        
-        public static FamilyParameter ReplaceFamilyParameter(FamilyManager familyManager, FamilyParameter familyParameter, string parameterName, ParameterGroupProxy builtInParameterGroup, bool isInstance)
-        {
-            return RevitVersionNumber < 2022
+
+        public static FamilyParameter ReplaceFamilyParameter(FamilyManager familyManager, FamilyParameter familyParameter, string parameterName, ParameterGroupProxy builtInParameterGroup, bool isInstance) =>
+            RevitVersionNumber < 2022
                 ? Revit2016.FamilyManager.ReplaceParameter(
                     familyManager,
                     familyParameter,
@@ -193,36 +186,27 @@ public static class RevitVersionResolver
                     parameterName,
                     builtInParameterGroup,
                     isInstance);
-        }
 
-        public static ParameterGroupProxy GetParameterGroup(Parameter parameter)
-        {
-            return RevitVersionNumber < 2022
+        public static ParameterGroupProxy GetParameterGroup(Parameter parameter) =>
+            RevitVersionNumber < 2022
                 ? (ParameterGroupProxy)Revit2016.Parameters.GetParameterGroupIndex(parameter)
                 : Revit2022.Parameters.GetParameterGroup(parameter);
-        }
 
-        public static ParameterTypeProxy GetParameterType(Parameter parameter)
-        {
-            return RevitVersionNumber < 2022
+        public static ParameterTypeProxy GetParameterType(Parameter parameter) =>
+            RevitVersionNumber < 2022
                 ? (ParameterTypeProxy)Revit2016.Parameters.GetParameterTypeIndex(parameter)
                 : Revit2022.Parameters.GetParameterType(parameter);
-        }
 
-        public static ParameterGroupProxy GetParameterGroup(FamilyParameter parameter)
-        {
-            return RevitVersionNumber < 2022
+        public static ParameterGroupProxy GetParameterGroup(FamilyParameter parameter) =>
+            RevitVersionNumber < 2022
                 ? (ParameterGroupProxy)Revit2016.Parameters.GetParameterGroupIndex(parameter)
                 : Revit2022.Parameters.GetParameterGroup(parameter);
-        }
 
-        public static ParameterTypeProxy GetParameterType(FamilyParameter parameter)
-        {
-            return RevitVersionNumber < 2022
+        public static ParameterTypeProxy GetParameterType(FamilyParameter parameter) =>
+            RevitVersionNumber < 2022
                 ? (ParameterTypeProxy)Revit2016.Parameters.GetParameterTypeIndex(parameter)
                 : Revit2022.Parameters.GetParameterType(parameter);
-        }
-        
+
         public static class BindingMaps
         {
             public static void Insert(BindingMap bindingMap, ExternalDefinition definition, Binding binding, ParameterGroupProxy parameterGroup)
@@ -266,12 +250,10 @@ public static class RevitVersionResolver
                 ? Revit2016.Units.ConvertToInternalUnits(document, value, (int)unitType)
                 : Revit2022.Units.ConvertToInternalUnits(document, value, unitType);
 
-        public static DisplayUnitTypeProxy GetDisplayUnitType(Document document, UnitTypeProxy unitType)
-        {
-            return RevitVersionNumber < 2022
+        public static DisplayUnitTypeProxy GetDisplayUnitType(Document document, UnitTypeProxy unitType) =>
+            RevitVersionNumber < 2022
                 ? (DisplayUnitTypeProxy)Revit2016.Units.GetDisplayUnitType(document, (int)unitType)
                 : Revit2022.Units.GetDisplayUnit(document, unitType);
-        }
     }
 
     public static class ViewSheet
