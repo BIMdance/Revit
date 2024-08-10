@@ -96,9 +96,9 @@ public static class RevitMapper
         {
             Name = familyInstance.Name,
             RevitId = familyInstance.Id.GetValue(),
-            CableReserve = AsDouble(familyInstance, SharedParameters.Cable_Reserve, 0),
+            CableReserve = AsDouble(familyInstance, Constants.SharedParameters.Cable.Reserve, 0),
             LocationPoint = Map<XYZ, XYZProxy>((familyInstance.Location as LocationPoint)?.Point),
-            ServiceType = AsString(familyInstance, SharedParameters.ServiceType, string.Empty),
+            ServiceType = AsString(familyInstance, Constants.SharedParameters.ServiceType, string.Empty),
         };
 
         SetLevelAndRoomId(familyInstance, electricalElementProxy);
@@ -111,12 +111,12 @@ public static class RevitMapper
     {
         Name = electricalSystem.Name,
         RevitId = electricalSystem.Id.GetValue(),
-        CableDesignation = AsString(electricalSystem, SharedParameters.Cable_Designation, string.Empty),
-        CableDiameter = AsDouble(electricalSystem, SharedParameters.Cable_Diameter, 0d),
-        CablesCount = AsInteger(electricalSystem, SharedParameters.Cables_Count, 1),
-        CircuitDesignation = AsString(electricalSystem, SharedParameters.Circuit_Designation, string.Empty),
+        CableDesignation = AsString(electricalSystem, Constants.SharedParameters.Cable.Designation, string.Empty),
+        CableDiameter = AsDouble(electricalSystem, Constants.SharedParameters.Cable.Diameter, 0d),
+        CablesCount = AsInteger(electricalSystem, Constants.SharedParameters.Cable.Count, 1),
+        CircuitDesignation = AsString(electricalSystem, Constants.SharedParameters.Circuit.Designation, string.Empty),
         Elements = electricalSystem.Elements.OfType<FamilyInstance>().Select(Map<FamilyInstance, ElectricalElementProxy>).ToList(),
-        Topology = (ConnectionTopology)AsInteger(electricalSystem, SharedParameters.Topology, 0),
+        Topology = (ConnectionTopology)AsInteger(electricalSystem, Constants.SharedParameters.Circuit.Topology, 0),
     };
 
     private static LevelProxy CreateLevelProxy(Level level) => new()
@@ -145,19 +145,19 @@ public static class RevitMapper
 
     private static ElectricalSystem ModifyElectricalSystem(ElectricalSystemProxy electricalSystemProxy, ElectricalSystem electricalSystem)
     {
-        electricalSystem.get_Parameter(SharedParameters.Cables_Count)?.Set(electricalSystemProxy.CablesCount);
-        electricalSystem.get_Parameter(SharedParameters.Cable_Length)?.Set(electricalSystemProxy.CableLength.MillimetersToInternal());
-        electricalSystem.get_Parameter(SharedParameters.Cable_Length_InCableTray)?.Set(electricalSystemProxy.CableLengthInCableTray.MillimetersToInternal());
-        electricalSystem.get_Parameter(SharedParameters.Cable_Length_OutsideCableTray)?.Set(electricalSystemProxy.CableLengthOutsideCableTray.MillimetersToInternal());
-        electricalSystem.get_Parameter(SharedParameters.Cable_LengthMax)?.Set(electricalSystemProxy.CableLengthMax.MillimetersToInternal());
-        electricalSystem.get_Parameter(SharedParameters.Topology)?.Set((int)electricalSystemProxy.Topology);
+        electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Count)?.Set(electricalSystemProxy.CablesCount);
+        electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Length)?.Set(electricalSystemProxy.CableLength.MillimetersToInternal());
+        electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Length_InCableTray)?.Set(electricalSystemProxy.CableLengthInCableTray.MillimetersToInternal());
+        electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Length_OutsideCableTray)?.Set(electricalSystemProxy.CableLengthOutsideCableTray.MillimetersToInternal());
+        electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Length_Max)?.Set(electricalSystemProxy.CableLengthMax.MillimetersToInternal());
+        electricalSystem.get_Parameter(Constants.SharedParameters.Circuit.Topology)?.Set((int)electricalSystemProxy.Topology);
         return electricalSystem;
     }
 
     private static CableTrayConduitBase ModifyCableTrayConduitBase(CableTrayConduitBaseProxy proxy, CableTrayConduitBase revit)
     {
-        revit.get_Parameter(SharedParameters.ElectricalSystemIds)?.Set($"#{string.Join("#", proxy.ElectricalSystems.Select(x => x.RevitId))}#");
-        revit.get_Parameter(SharedParameters.CableTrace)?.Set(proxy.CableTrace);
+        revit.get_Parameter(Constants.SharedParameters.ElectricalSystemIds)?.Set($"#{string.Join("#", proxy.ElectricalSystems.Select(x => x.RevitId))}#");
+        revit.get_Parameter(Constants.SharedParameters.Cable.Trace)?.Set(proxy.CableTrace);
            
         // if (proxy is CableTrayProxy cableTray)
         //     revit.get_Parameter(SharedParameters.CableTray_Filling)?.Set(cableTray.Filling);
@@ -186,7 +186,7 @@ public static class RevitMapper
 
     private static void SetTraceBinding(FamilyInstance src, ElectricalElementProxy dest)
     {
-        var traceBindingParameter = src?.get_Parameter(SharedParameters.CableTrayConduitIds);
+        var traceBindingParameter = src?.get_Parameter(Constants.SharedParameters.CableTrayConduitIds);
         
         if (traceBindingParameter is null || !traceBindingParameter.HasValue)
             return;

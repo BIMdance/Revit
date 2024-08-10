@@ -26,8 +26,8 @@ public class RevitContext
         get => _document;
         set
         {
-            if (Equals(_document, value)) return;
-            var oldDocument = _document;
+            var oldDocument = _document?.IsValidObject ?? false ? _document : null;
+            if (Equals(oldDocument, value)) return;
             _document = value;
             OnDocumentChanged?.Invoke(oldDocument, newDocument: value);
         }

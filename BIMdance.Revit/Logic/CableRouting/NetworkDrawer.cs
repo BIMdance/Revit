@@ -173,7 +173,7 @@ public class NetworkDrawer
         if (element.TraceBinding is CableTrayConduitBaseProxy cableTrayConduit)
         {
             var cableTrayConduitSystemIds = _document.GetElement(RevitVersionResolver.NewElementId(cableTrayConduit.RevitId))?
-                .get_Parameter(SharedParameters.ElectricalSystemIds)?.AsString()?
+                .get_Parameter(Constants.SharedParameters.ElectricalSystemIds)?.AsString()?
                 .Trim('#').Split('#')
                 .Select(x => long.TryParse(x, out var i) ? i : -1)
                 .Where(x => x > 0) ?? Array.Empty<long>();
@@ -271,21 +271,21 @@ public class NetworkDrawer
         filterManager.SetFilters(
             $"!ElectricalCircuit({electricalSystemId})_Route",
             RouteFilterKey,
-            new [] { new FilterRuleParameter(SharedParameters.ElectricalSystemIds, searchId, FilterRuleMode.NotContains) },
+            new [] { new FilterRuleParameter(Constants.SharedParameters.ElectricalSystemIds, searchId, FilterRuleMode.NotContains) },
             FilterGraphicSettings.Halftone,
             _electricalCategories);
         
         filterManager.SetFilters(
             $"ElectricalCircuit({electricalSystemId})_Route",
             RouteFilterKey,
-            new [] { new FilterRuleParameter(SharedParameters.ElectricalSystemIds, searchId, FilterRuleMode.Contains) },
+            new [] { new FilterRuleParameter(Constants.SharedParameters.ElectricalSystemIds, searchId, FilterRuleMode.Contains) },
             FilterGraphicSettings.LinesRed,
             _electricalCategories);
 
         filterManager.SetFilters(
             $"!ElectricalCircuit({electricalSystemId})_Route",
             RouteFilterKey,
-            new [] { new FilterRuleParameter(SharedParameters.ElectricalSystemIds, searchId, FilterRuleMode.NotContains) },
+            new [] { new FilterRuleParameter(Constants.SharedParameters.ElectricalSystemIds, searchId, FilterRuleMode.NotContains) },
             FilterGraphicSettings.Halftone,
             _electricalCategories);
         
@@ -300,7 +300,7 @@ public class NetworkDrawer
 
         foreach (var familyInstance in familyInstances)
         {
-            var electricalSystemIdsParameter = familyInstance.get_Parameter(SharedParameters.ElectricalSystemIds);
+            var electricalSystemIdsParameter = familyInstance.get_Parameter(Constants.SharedParameters.ElectricalSystemIds);
             
             if (electricalSystemIdsParameter == null)
                 continue;
@@ -328,7 +328,7 @@ public class NetworkDrawer
     {
         var familyInstanceSystems = RevitVersionResolver.Electrical.GetElectricalSystems(familyInstance);
         var electricalSystemIds = $"#{string.Join("#", familyInstanceSystems.Select(x => x.Id.GetValue()))}#";
-        familyInstance.get_Parameter(SharedParameters.ElectricalSystemIds)?.Set(electricalSystemIds);
+        familyInstance.get_Parameter(Constants.SharedParameters.ElectricalSystemIds)?.Set(electricalSystemIds);
     }
 
     public void AddCableTrayFillingFilters()
@@ -342,70 +342,70 @@ public class NetworkDrawer
             filterManager.SetFilters(
                 $"Trace=\"\"",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.ElectricalSystemIds, "", FilterRuleMode.Equals) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.ElectricalSystemIds, "", FilterRuleMode.Equals) },
                 FilterGraphicSettings.Halftone,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFilling=0",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0d, FilterRuleMode.Equals) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0d, FilterRuleMode.Equals) },
                 FilterGraphicSettings.SolidWhite,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess10",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.1d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.1d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidBlueLight,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess20",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.2d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.2d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidGreenLight,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess30",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.3d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.3d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidGreen,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess40",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.4d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.4d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidGreenDark,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess50",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.5d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.5d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidYellow,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess60",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.6d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.6d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidOrange,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingLess60",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.7d, FilterRuleMode.LessOrEqual) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.7d, FilterRuleMode.LessOrEqual) },
                 FilterGraphicSettings.SolidRed,
                 _cableTrayConduits);
         
             filterManager.SetFilters(
                 $"CableTraysFillingGreater70",
                 CableTrayFillingFilterKey,
-                new [] { new FilterRuleParameter(SharedParameters.CableTray_FillingPercent, 0.7d, FilterRuleMode.Greater) },
+                new [] { new FilterRuleParameter(Constants.SharedParameters.CableTray.FillingPercent, 0.7d, FilterRuleMode.Greater) },
                 FilterGraphicSettings.SolidRedDark,
                 _cableTrayConduits);
         

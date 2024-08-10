@@ -5,77 +5,77 @@ public static class SharedParametersLogic
     public static void AddSharedParameters(Document document)
     {
         var circuitDesignationDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Circuit_Designation,
+            Constants.SharedParameters.Circuit.Designation,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var circuitTopologyDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Circuit_Topology,
+            Constants.SharedParameters.Circuit.Topology,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableDesignationDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cable_Designation,
+            Constants.SharedParameters.Cable.Designation,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableDiameterDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cable_Diameter,
+            Constants.SharedParameters.Cable.Diameter,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableLengthDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cable_Length,
+            Constants.SharedParameters.Cable.Length,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableLengthMaxDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cable_LengthMax,
+            Constants.SharedParameters.Cable.Length_Max,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableLengthInCableTrayDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cable_Length_InCableTray,
+            Constants.SharedParameters.Cable.Length_InCableTray,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableLengthOutsideCableTrayDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cable_Length_OutsideCableTray,
+            Constants.SharedParameters.Cable.Length_OutsideCableTray,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cablesCountDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.Cables_Count,
+            Constants.SharedParameters.Cable.Count,
             ParameterGroupProxy.PG_CONSTRAINTS,
             isInstance: true);
         
         var cableTraceDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.CableTrace,
+            Constants.SharedParameters.Cable.Trace,
             ParameterGroupProxy.PG_ELECTRICAL,
             isInstance: true);
         
         var cableTrayFillingDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.CableTray_Filling,
+            Constants.SharedParameters.CableTray.Filling,
             ParameterGroupProxy.PG_ELECTRICAL,
             isInstance: true);
         
         var cableTrayFillingPercentDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.CableTray_FillingPercent,
+            Constants.SharedParameters.CableTray.FillingPercent,
             ParameterGroupProxy.PG_ELECTRICAL,
             isInstance: true);
         
         var cableTrayConduitIdsDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.CableTrayConduitIds,
+            Constants.SharedParameters.CableTrayConduitIds,
             ParameterGroupProxy.PG_IDENTITY_DATA,
             isInstance: true);
         
         var electricalSystemIdsDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.ElectricalSystemIds,
+            Constants.SharedParameters.ElectricalSystemIds,
             ParameterGroupProxy.PG_IDENTITY_DATA,
             isInstance: true);
         
         var serviceTypeDefinition = new BaseSharedParameterDefinition(
-            SharedParameterGuids.ServiceType,
+            Constants.SharedParameters.ServiceType,
             ParameterGroupProxy.PG_IDENTITY_DATA,
             isInstance: true);
         

@@ -1,4 +1,4 @@
-﻿using StringComparer = BIMdance.Revit.Utils.StringComparer;
+﻿using StringComparer = BIMdance.Revit.Utils.Common.StringComparer;
 
 namespace BIMdance.Revit.Logic.CableRouting;
 
