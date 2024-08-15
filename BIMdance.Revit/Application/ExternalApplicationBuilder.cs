@@ -4,7 +4,7 @@ namespace BIMdance.Revit.Application;
 
 public class ExternalApplicationBuilder
 {
-    private static readonly Func<IServiceProvider, object> CurrentScope = provider => provider.Get<ServiceScope>()?.Current;
+    private static readonly Func<IServiceProvider, object> CurrentScope = provider => provider.Get<Document>();
 
     public string ApplicationName { get; }
     public UIControlledApplication UIControlledApplication { get; }

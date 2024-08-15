@@ -4,8 +4,6 @@ namespace BIMdance.Revit.Utils.DependencyInjection;
 
 public class ServiceScope
 {
-    public object? Current { get; set; }
-        
     private readonly Dictionary<object, Dictionary<Type, object>> _dictionary = new();
 
     public bool TryGetScoped<T>(object scopeObject, out T? result) where T : class
@@ -38,11 +36,5 @@ public class ServiceScope
         }
     }
 
-    public void Remove(object scope)
-    {
-        _dictionary.Remove(scope);
-            
-        if (Current == scope)
-            Current = null;
-    }
+    public void Remove(object scope) => _dictionary.Remove(scope);
 }

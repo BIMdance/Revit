@@ -190,6 +190,7 @@
         <Compile Include="Utils\Revit\ElementComparer.cs" />
         <Compile Include="Utils\Revit\FamilyInstanceExtension.cs" />
         <Compile Include="Utils\Revit\FilterUtils.cs" />
+        <Compile Include="Utils\Revit\LevelUtils.cs" />
         <Compile Include="Utils\Revit\LookupTableUtils.cs" />
         <Compile Include="Utils\Revit\Parameters\ForgeConverter.cs" />
         <Compile Include="Utils\Revit\Parameters\ParameterTypeConverter.cs" />

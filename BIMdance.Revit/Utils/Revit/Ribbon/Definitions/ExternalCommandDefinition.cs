@@ -54,10 +54,6 @@ public abstract class ExternalCommandDefinition : IExternalCommand
             Message = message;
             Elements = elements;
             Document = ExternalCommandData.Application.ActiveUIDocument.Document;
-            
-            if (ServiceProvider.Get<ServiceScope>() is { } serviceScope)
-                serviceScope.Current ??= Document;
-            
             RevitContext.Document = Document;
             RevitContext.UIApplication = commandData.Application;
 
