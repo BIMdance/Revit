@@ -55,6 +55,7 @@ global using BIMdance.Revit.Utils.DependencyInjection;
 global using BIMdance.Revit.Utils.Observer;
 global using BIMdance.Revit.Utils.Revit;
 global using BIMdance.Revit.Utils.Revit.Async;
+global using BIMdance.Revit.Utils.Revit.Comparers;
 global using BIMdance.Revit.Utils.Revit.Parameters;
 global using BIMdance.Revit.Utils.Revit.Parameters.Shared;
 global using BIMdance.Revit.Utils.Revit.RevitVersions;

@@ -114,6 +114,7 @@
         <Compile Include="Utils\Common\DoubleExtension.cs" />
         <Compile Include="Utils\Common\EnumerableExtension.cs" />
         <Compile Include="Utils\Common\FileUtils.cs" />
+        <Compile Include="Utils\Common\MathConstants.cs" />
         <Compile Include="Utils\Common\NameUtils.cs" />
         <Compile Include="Utils\Common\SearchUtils.cs" />
         <Compile Include="Utils\Common\StringComparer.cs" />
@@ -189,6 +190,8 @@
         <Compile Include="Utils\Revit\DocumentExtension.cs" />
         <Compile Include="Utils\Revit\DocumentTransactionExtension.cs" />
         <Compile Include="Utils\Revit\Electrical\ConnectorUtils.cs" />
+        <Compile Include="Utils\Revit\Electrical\DistributionSysTypeExtension.cs" />
+        <Compile Include="Utils\Revit\Electrical\ElectricalSystemUtils.cs" />
         <Compile Include="Utils\Revit\FamilyInstanceExtension.cs" />
         <Compile Include="Utils\Revit\FilterUtils.cs" />
         <Compile Include="Utils\Revit\LevelUtils.cs" />
