@@ -30,6 +30,7 @@ global using Autodesk.Revit.ApplicationServices;
 global using Autodesk.Revit.DB;
 global using Autodesk.Revit.DB.Architecture;
 global using Autodesk.Revit.DB.Electrical;
+global using Autodesk.Revit.DB.Events;
 global using Autodesk.Revit.UI;
 global using Autodesk.Revit.UI.Events;
 global using Autodesk.Revit.UI.Selection;
