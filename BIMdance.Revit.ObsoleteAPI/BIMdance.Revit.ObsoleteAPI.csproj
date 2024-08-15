@@ -48,6 +48,7 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Revit2016.ElectricalSystems.cs" />
         <Compile Include="Revit2016.Geometry.cs" />
         <Compile Include="Revit2016.Views.cs" />
         <Compile Include="Revit2016.InternalDefinitions.cs" />

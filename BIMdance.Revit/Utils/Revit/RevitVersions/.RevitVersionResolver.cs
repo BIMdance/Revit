@@ -25,6 +25,19 @@ public static class RevitVersionResolver
             ? Revit2016.ElementId.NewElementId((int)id)
             : Revit2024.ElementId.NewElementId(id);
     
+    public static class Electrical
+    {
+        public static ElectricalSystem CreateElectricalSystem(Document document, Connector connector, ElectricalSystemType electricalSystemType) =>
+            RevitVersionNumber < 2019
+                ? Revit2016.ElectricalSystems.Create(document, connector, electricalSystemType)
+                : Revit2019.ElectricalSystems.Create(connector, electricalSystemType);
+           
+        public static ElectricalSystem CreateElectricalSystem(Document document, IList<ElementId> elementIds, ElectricalSystemType electricalSystemType) =>
+            RevitVersionNumber < 2019
+                ? Revit2016.ElectricalSystems.Create(document, elementIds, electricalSystemType)
+                : Revit2019.ElectricalSystems.Create(document, elementIds, electricalSystemType);
+    }
+    
     public static class Filters
     {
         public static ParameterFilterElement CreateParameterFilterElement(

@@ -1,6 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
 
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BIMdance.Revit.ObsoleteAPI;

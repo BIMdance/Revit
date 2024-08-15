@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BIMdance.Revit.ObsoleteAPI;
+﻿namespace BIMdance.Revit.ObsoleteAPI;
 
 public static partial class Revit2016
 {

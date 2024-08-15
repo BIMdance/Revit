@@ -4,6 +4,25 @@ namespace BIMdance.Revit.Utils.Revit.RevitVersions;
 
 internal static class Revit2019
 {
+    internal static class ElectricalSystems
+    {
+        internal static ElectricalSystem Create(
+            Connector connector,
+            ElectricalSystemType electricalSystemType) =>
+            ElectricalSystem.Create(
+                connector,
+                electricalSystemType);
+
+        internal static ElectricalSystem Create(
+            Document document,
+            IList<ElementId> connector,
+            ElectricalSystemType electricalSystemType) =>
+            ElectricalSystem.Create(
+                document,
+                connector,
+                electricalSystemType);
+    }
+    
     internal static class Filters
     {
         internal static ParameterFilterElement CreateParameterFilterElement(
