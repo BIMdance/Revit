@@ -184,10 +184,10 @@
         <Compile Include="Utils\Revit\Async\Utils\AsyncLocker.cs" />
         <Compile Include="Utils\Revit\Async\Utils\TaskUtils.cs" />
         <Compile Include="Utils\Revit\Async\Utils\UnlockKey.cs" />
+        <Compile Include="Utils\Revit\Comparers\ElementComparer.cs" />
         <Compile Include="Utils\Revit\CultureUtils.cs" />
         <Compile Include="Utils\Revit\DocumentExtension.cs" />
         <Compile Include="Utils\Revit\DocumentTransactionExtension.cs" />
-        <Compile Include="Utils\Revit\ElementComparer.cs" />
         <Compile Include="Utils\Revit\FamilyInstanceExtension.cs" />
         <Compile Include="Utils\Revit\FilterUtils.cs" />
         <Compile Include="Utils\Revit\LevelUtils.cs" />

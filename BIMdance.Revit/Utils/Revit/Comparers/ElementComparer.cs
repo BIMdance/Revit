@@ -1,4 +1,4 @@
-namespace BIMdance.Revit.Utils.Revit;
+namespace BIMdance.Revit.Utils.Revit.Comparers;
 
 public class ElementComparer<T> : IEqualityComparer<T> where T : Element
 {

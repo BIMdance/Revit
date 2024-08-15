@@ -32,7 +32,7 @@ internal static class FilterUtils
             double doubleValue => ParameterFilterRuleFactory.CreateLessRule(idParameter, doubleValue, 0.001),
             ElementId id => ParameterFilterRuleFactory.CreateLessRule(idParameter, id),
             int intValue => ParameterFilterRuleFactory.CreateLessRule(idParameter, intValue),
-            _ => ParameterFilterRuleFactory.CreateLessRule(idParameter, value.ToString(), caseSensitive: false)
+            _ => ParameterFilterRuleFactory.CreateLessRule(idParameter, value.ToString())
         };
     }
 
@@ -43,7 +43,7 @@ internal static class FilterUtils
             double doubleValue => ParameterFilterRuleFactory.CreateLessOrEqualRule(idParameter, doubleValue, 0.001),
             ElementId id => ParameterFilterRuleFactory.CreateLessOrEqualRule(idParameter, id),
             int intValue => ParameterFilterRuleFactory.CreateLessOrEqualRule(idParameter, intValue),
-            _ => ParameterFilterRuleFactory.CreateLessOrEqualRule(idParameter, value.ToString(), caseSensitive: false)
+            _ => ParameterFilterRuleFactory.CreateLessOrEqualRule(idParameter, value.ToString())
         };
     }
 
@@ -54,7 +54,7 @@ internal static class FilterUtils
             double doubleValue => ParameterFilterRuleFactory.CreateGreaterRule(idParameter, doubleValue, 0.001),
             ElementId id => ParameterFilterRuleFactory.CreateGreaterRule(idParameter, id),
             int intValue => ParameterFilterRuleFactory.CreateGreaterRule(idParameter, intValue),
-            _ => ParameterFilterRuleFactory.CreateGreaterRule(idParameter, value.ToString(), caseSensitive: false)
+            _ => ParameterFilterRuleFactory.CreateGreaterRule(idParameter, value.ToString())
         };
     }
 
@@ -65,7 +65,7 @@ internal static class FilterUtils
             double doubleValue => ParameterFilterRuleFactory.CreateGreaterOrEqualRule(idParameter, doubleValue, 0.001),
             ElementId id => ParameterFilterRuleFactory.CreateGreaterOrEqualRule(idParameter, id),
             int intValue => ParameterFilterRuleFactory.CreateGreaterOrEqualRule(idParameter, intValue),
-            _ => ParameterFilterRuleFactory.CreateGreaterOrEqualRule(idParameter, value.ToString(), caseSensitive: false)
+            _ => ParameterFilterRuleFactory.CreateGreaterOrEqualRule(idParameter, value.ToString())
         };
     }
 
@@ -76,7 +76,7 @@ internal static class FilterUtils
             double doubleValue => ParameterFilterRuleFactory.CreateNotEqualsRule(idParameter, doubleValue, 0.001),
             ElementId id => ParameterFilterRuleFactory.CreateNotEqualsRule(idParameter, id),
             int intValue => ParameterFilterRuleFactory.CreateNotEqualsRule(idParameter, intValue),
-            _ => ParameterFilterRuleFactory.CreateNotEqualsRule(idParameter, value.ToString(), caseSensitive: false)
+            _ => ParameterFilterRuleFactory.CreateNotEqualsRule(idParameter, value.ToString())
         };
     }
 }
