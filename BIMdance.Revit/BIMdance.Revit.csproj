@@ -188,6 +188,7 @@
         <Compile Include="Utils\Revit\CultureUtils.cs" />
         <Compile Include="Utils\Revit\DocumentExtension.cs" />
         <Compile Include="Utils\Revit\DocumentTransactionExtension.cs" />
+        <Compile Include="Utils\Revit\Electrical\ConnectorUtils.cs" />
         <Compile Include="Utils\Revit\FamilyInstanceExtension.cs" />
         <Compile Include="Utils\Revit\FilterUtils.cs" />
         <Compile Include="Utils\Revit\LevelUtils.cs" />
@@ -201,7 +202,6 @@
         <Compile Include="Utils\Revit\Parameters\Shared\SharedParameterDefinition.cs" />
         <Compile Include="Utils\Revit\Parameters\Shared\SharedParametersUtils.cs" />
         <Compile Include="Utils\Revit\ReferenceUtils.cs" />
-        <Compile Include="Utils\Revit\RevitConnectorUtils.cs" />
         <Compile Include="Utils\Revit\RevitIdEqualityComparer.cs" />
         <Compile Include="Utils\Revit\RevitKeyPress.cs" />
         <Compile Include="Utils\Revit\RevitOptions.cs" />

@@ -1,4 +1,6 @@
-﻿namespace BIMdance.Revit.Logic.CableRouting;
+﻿using BIMdance.Revit.Utils.Revit.Electrical;
+
+namespace BIMdance.Revit.Logic.CableRouting;
 
 public class NetworkConverter : ProxyConverter<TraceNetwork>
 {
@@ -41,7 +43,7 @@ public class NetworkConverter : ProxyConverter<TraceNetwork>
             var currentElement = _stackElements.Pop();
             _cableTrayConduits.Remove(currentElement.Id.GetValue());
             var traceElement = GetTraceElement(traceNetwork, currentElement);
-            var connectors = RevitConnectorUtils.GetConnectors(currentElement, Domain.DomainCableTrayConduit).Where(x => x.IsConnected).OrderBy(n => n.Id);
+            var connectors = currentElement.GetConnectors(Domain.DomainCableTrayConduit).Where(x => x.IsConnected).OrderBy(n => n.Id);
             
             foreach (var connector in connectors)
                 AddTraceElement(traceNetwork, traceElement, connector);
