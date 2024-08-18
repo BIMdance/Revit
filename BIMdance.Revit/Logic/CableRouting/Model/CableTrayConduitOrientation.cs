@@ -1,4 +1,4 @@
-namespace BIMdance.Revit.Model.CableRouting;
+namespace BIMdance.Revit.Logic.CableRouting.Model;
 
 public enum CableTrayConduitOrientation
 {

@@ -1,10 +1,10 @@
-﻿namespace BIMdance.Revit.Model.RevitProxy;
+﻿namespace BIMdance.Revit.Logic.CableRouting.Model;
 
-public class ElectricalSystemProxy : ElementProxy
+public class TraceElectricalSystemProxy : ElementProxy
 {
-    public ElectricalSystemProxy() { }
-    public ElectricalElementProxy BaseEquipment { get; set; }
-    public List<ElectricalElementProxy> Elements { get; set; }
+    public TraceElectricalSystemProxy() { }
+    public TraceElectricalElementProxy BaseEquipment { get; set; }
+    public List<TraceElectricalElementProxy> Elements { get; set; }
     
     public string CableDesignation { get; set; }
     public string CircuitDesignation { get; set; }
@@ -17,10 +17,8 @@ public class ElectricalSystemProxy : ElementProxy
     public double CableLengthInCableTray { get; set; }
     public double CableLengthOutsideCableTray { get; set; }
 
-    public override string ToString()
-    {
-        return $"[{Guid} / {RevitId}] <{GetType().Name}> {Name}" +
-               $"\n\t{BaseEquipment}" +
-               $"\n\t{string.Join("\n\t", Elements)}";
-    }
+    public override string ToString() =>
+        $"[{Guid} / {RevitId}] <{GetType().Name}> {Name}" +
+        $"\n\t{BaseEquipment}" +
+        $"\n\t{string.Join("\n\t", Elements)}";
 }

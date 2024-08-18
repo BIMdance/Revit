@@ -2,7 +2,7 @@
 
 public class NetworkElements
 {
-    private List<ElectricalElementProxy> _allDoneElements;
+    private List<TraceElectricalElementProxy> _allDoneElements;
 
     public NetworkElements(NetworkConverter networkConverter) :
         this(networkConverter.Convert()) { }
@@ -17,13 +17,13 @@ public class NetworkElements
     
     public List<CableTrayConduitBaseProxy> CableTrayConduits { get; }
 
-    public void SetTraceBinding(ElectricalElementProxy baseEquipment)
+    public void SetTraceBinding(TraceElectricalElementProxy baseEquipment)
     {
         var traceNetwork = GetTraceNetwork(baseEquipment);
         baseEquipment.ElectricalSystems.ForEach(proxy => SetTraceBinding(proxy, traceNetwork));
     }
 
-    public void SetTraceBinding(ElectricalSystemProxy electricalSystem, TraceNetwork traceNetwork = null)
+    public void SetTraceBinding(TraceElectricalSystemProxy electricalSystem, TraceNetwork traceNetwork = null)
     {
         var baseEquipment = electricalSystem.BaseEquipment;
         var elements = electricalSystem.Elements;
@@ -31,7 +31,7 @@ public class NetworkElements
 
         ResetTraceBindings(elements);
         
-        _allDoneElements = new List<ElectricalElementProxy> { /* baseEquipment */ };
+        _allDoneElements = new List<TraceElectricalElementProxy> { /* baseEquipment */ };
 
         var (withTraceElements, withoutTraceElements, withTraceOutRoomsElements, withoutTraceOutRoomsElements) =
             SplitElements(elements, traceNetwork);
@@ -45,7 +45,7 @@ public class NetworkElements
             .ForEach(n => n.SetTraceBinding(baseEquipment));
     }
     
-    private TraceNetwork GetTraceNetwork(ElectricalElementProxy electricalElement)
+    private TraceNetwork GetTraceNetwork(TraceElectricalElementProxy electricalElement)
     {
         if (electricalElement.TraceNetwork == null)
             SetTraceNetwork(electricalElement);
@@ -53,7 +53,7 @@ public class NetworkElements
         return electricalElement.TraceNetwork;
     }
 
-    private void SetTraceNetwork(ElectricalElementProxy electricalElement)
+    private void SetTraceNetwork(TraceElectricalElementProxy electricalElement)
     {
         var nearestTraceElement =
             FindNearestTraceElementInRoom(electricalElement) ??
@@ -62,22 +62,22 @@ public class NetworkElements
         electricalElement.SetTraceBinding(nearestTraceElement);
     }
 
-    private static void ResetTraceBindings(List<ElectricalElementProxy> elements)
+    private static void ResetTraceBindings(List<TraceElectricalElementProxy> elements)
     {
         elements.ForEach(n => n.SetTraceBinding(null));
     }
 
     #region Binding Elements
 
-    private (List<ElectricalElementProxy> ElementsWithTrace, List<ElectricalElementProxy> ElementsWithoutTrace,
-        List<ElectricalElementProxy> ElementsWithTraceOutRooms, List<ElectricalElementProxy>
+    private (List<TraceElectricalElementProxy> ElementsWithTrace, List<TraceElectricalElementProxy> ElementsWithoutTrace,
+        List<TraceElectricalElementProxy> ElementsWithTraceOutRooms, List<TraceElectricalElementProxy>
         ElementsWithoutTraceOutRooms)
-        SplitElements(IEnumerable<ElectricalElementProxy> elements, TraceNetwork traceNetwork)
+        SplitElements(IEnumerable<TraceElectricalElementProxy> elements, TraceNetwork traceNetwork)
     {
-        var withTraceElements = new List<ElectricalElementProxy>();
-        var withoutTraceElements = new List<ElectricalElementProxy>();
-        var withTraceOutRoomsElements = new List<ElectricalElementProxy>();
-        var withoutTraceOutRoomsElements = new List<ElectricalElementProxy>();
+        var withTraceElements = new List<TraceElectricalElementProxy>();
+        var withoutTraceElements = new List<TraceElectricalElementProxy>();
+        var withTraceOutRoomsElements = new List<TraceElectricalElementProxy>();
+        var withoutTraceOutRoomsElements = new List<TraceElectricalElementProxy>();
 
         foreach (var element in elements)
         {
@@ -102,7 +102,7 @@ public class NetworkElements
         return (withTraceElements, withoutTraceElements, withTraceOutRoomsElements, withoutTraceOutRoomsElements);
     }
 
-    internal void SetTraceBinding(ElectricalElementProxy element, TraceNetwork traceNetwork)
+    internal void SetTraceBinding(TraceElectricalElementProxy element, TraceNetwork traceNetwork)
     {
         if (traceNetwork?.ElementInNetwork(element) ?? false)
             return;
@@ -113,7 +113,7 @@ public class NetworkElements
         element.SetTraceBinding(nearestTraceElement);
     }
 
-    private void SetBindingsWithTraceElements(IList<ElectricalElementProxy> elementsWithTrace)
+    private void SetBindingsWithTraceElements(IList<TraceElectricalElementProxy> elementsWithTrace)
     {
         while (elementsWithTrace.Any())
         {
@@ -130,9 +130,9 @@ public class NetworkElements
 
     #region SetLinksWithTraceElements
 
-    private void SetTraceBindings(IEnumerable<ElectricalElementProxy> elementsInRoom)
+    private void SetTraceBindings(IEnumerable<TraceElectricalElementProxy> elementsInRoom)
     {
-        var doneElementsInRoom = new List<ElectricalElementProxy>();
+        var doneElementsInRoom = new List<TraceElectricalElementProxy>();
         var sortElementsInRoom = elementsInRoom
             .Select(n => new { Element = n, RatingDistance = GetRatingDistanceToTraceBinding(n) })
             .OrderBy(n => n.RatingDistance)
@@ -167,17 +167,17 @@ public class NetworkElements
         _allDoneElements.AddRange(doneElementsInRoom);
     }
 
-    private double GetRatingDistanceToTraceBinding(ElectricalElementProxy n)
+    private double GetRatingDistanceToTraceBinding(TraceElectricalElementProxy n)
     {
         return GetTraceBinding(n) switch
         {
             CableTrayConduitBaseProxy traceCableTrayConduit => n.LocationPoint.RatingDistanceToSegment(traceCableTrayConduit.Point1, traceCableTrayConduit.Point2),
-            ElectricalElementProxy electricalElement => n.LocationPoint.RatingDistanceTo(electricalElement.LocationPoint),
+            TraceElectricalElementProxy electricalElement => n.LocationPoint.RatingDistanceTo(electricalElement.LocationPoint),
             _ => double.PositiveInfinity
         };
     }
 
-    public TraceElement GetTraceBinding(ElectricalElementProxy element)
+    public TraceElement GetTraceBinding(TraceElectricalElementProxy element)
     {
         if (element.TraceBinding != null)
             return element.TraceBinding;
@@ -191,7 +191,7 @@ public class NetworkElements
         return null;
     }
 
-    public List<TraceElement> GetTraceElements(ElectricalElementProxy element)
+    public List<TraceElement> GetTraceElements(TraceElectricalElementProxy element)
     {
         var traceElements = new List<TraceElement>(element.TraceElements);
 
@@ -204,8 +204,8 @@ public class NetworkElements
     #endregion
 
     private void SetBindingsWithoutTraceElements(
-        List<ElectricalElementProxy> withoutTraceElements,
-        ElectricalElementProxy baseEquipment)
+        List<TraceElectricalElementProxy> withoutTraceElements,
+        TraceElectricalElementProxy baseEquipment)
     {
         while (withoutTraceElements.Any())
         {
@@ -230,8 +230,8 @@ public class NetworkElements
     #region SetBindingsWithoutTraceElements
 
     private (double Left, double Top, double Right, double Bottom) GetBoundingTrace(
-        ElectricalElementProxy farthestFromPanelElementInRoom,
-        ElectricalElementProxy baseEquipment)
+        TraceElectricalElementProxy farthestFromPanelElementInRoom,
+        TraceElectricalElementProxy baseEquipment)
     {
         var radius = farthestFromPanelElementInRoom.LocationPoint.DistanceToOnPlane(baseEquipment.LocationPoint, Normal.Z);
         var left = farthestFromPanelElementInRoom.LocationPoint.X - radius;
@@ -242,7 +242,7 @@ public class NetworkElements
         return (left, top, right, bottom);
     }
 
-    private IEnumerable<ElectricalElementProxy> GetDoneElementsFiltered(
+    private IEnumerable<TraceElectricalElementProxy> GetDoneElementsFiltered(
         (double Left, double Top, double Right, double Bottom) boundingTrace)
     {
         return _allDoneElements.Where(n =>
@@ -253,7 +253,7 @@ public class NetworkElements
     }
 
     private List<CableTrayConduitBaseProxy> GetTraceElementsFiltered(
-        ElectricalElementProxy farthestFromPanelElementInRoom,
+        TraceElectricalElementProxy farthestFromPanelElementInRoom,
         (double Left, double Top, double Right, double Bottom) boundingTrace,
         TraceNetwork traceNetwork)
     {
@@ -269,11 +269,11 @@ public class NetworkElements
             }).ToList();
     }
 
-    private static ElectricalElementProxy GetCurrentElement(
-        ElectricalElementProxy baseEquipment,
-        IEnumerable<ElectricalElementProxy> elementsInRoom,
-        ElectricalElementProxy nearestToPanelElement,
-        IReadOnlyCollection<ElectricalElementProxy> doneElementsFiltered,
+    private static TraceElectricalElementProxy GetCurrentElement(
+        TraceElectricalElementProxy baseEquipment,
+        IEnumerable<TraceElectricalElementProxy> elementsInRoom,
+        TraceElectricalElementProxy nearestToPanelElement,
+        IReadOnlyCollection<TraceElectricalElementProxy> doneElementsFiltered,
         IReadOnlyCollection<CableTrayConduitBaseProxy> traceElementsFiltered)
     {
         var minRating = double.PositiveInfinity;
@@ -326,10 +326,10 @@ public class NetworkElements
     }
 
     private void SetTraceBindings(
-        IEnumerable<ElectricalElementProxy> elementsInRoom,
-        ElectricalElementProxy currentElement)
+        IEnumerable<TraceElectricalElementProxy> elementsInRoom,
+        TraceElectricalElementProxy currentElement)
     {
-        var doneElementsInRoom = new List<ElectricalElementProxy>();
+        var doneElementsInRoom = new List<TraceElectricalElementProxy>();
         var sortElementsInRoom = elementsInRoom.OrderBy(n => currentElement.LocationPoint.RatingDistanceTo(n.LocationPoint)).ToList();
 
         foreach (var element in sortElementsInRoom)
@@ -352,18 +352,18 @@ public class NetworkElements
 
     #endregion
 
-    internal double GetDistanceToTraceNode(ElectricalElementProxy element)
+    internal double GetDistanceToTraceNode(TraceElectricalElementProxy element)
     {
         return GetTraceBinding(element) switch
         {
             CableTrayConduitBaseProxy cableTrayConduit => (element.LocationPoint - element.LocationPoint.ProjectToSegment(cableTrayConduit.Point1, cableTrayConduit.Point2)).SumAbsXYZ(),
-            ElectricalElementProxy electricalElement => (element.LocationPoint - electricalElement.LocationPoint).SumAbsXYZ(),
+            TraceElectricalElementProxy electricalElement => (element.LocationPoint - electricalElement.LocationPoint).SumAbsXYZ(),
             _ => 0
         };
     }
     
     private CableTrayConduitBaseProxy FindNearestTraceElementInRoom(
-        ElectricalElementProxy electricalElement,
+        TraceElectricalElementProxy electricalElement,
         TraceNetwork traceNetwork = null)
     {
         if (electricalElement == null) throw new NullReferenceException(nameof(electricalElement));
@@ -374,7 +374,7 @@ public class NetworkElements
         return FindNearestTraceElement(electricalElement.LocationPoint, traceElementsInRoom);
     }
 
-    private TraceElement FindNearestTraceElementInLevel(ElectricalElementProxy electricalElement,
+    private TraceElement FindNearestTraceElementInLevel(TraceElectricalElementProxy electricalElement,
         TraceNetwork traceNetwork = null)
     {
         if (electricalElement == null) throw new NullReferenceException(nameof(electricalElement));
@@ -385,7 +385,7 @@ public class NetworkElements
         return FindNearestTraceElement(electricalElement.LocationPoint, traceElementsInLevel);
     }
 
-    internal List<CableTrayConduitBaseProxy> FindTraceElementsInRoom(ElectricalElementProxy element, TraceNetwork traceNetwork)
+    internal List<CableTrayConduitBaseProxy> FindTraceElementsInRoom(TraceElectricalElementProxy element, TraceNetwork traceNetwork)
     {
         var room = element.Room;
         var traceCableTrayConduitsInRoom = (traceNetwork != null
@@ -408,7 +408,7 @@ public class NetworkElements
         return GetTraceCableTrayConduitServiceType(traceCableTrayConduitsInRoom, element);
     }
 
-    internal List<CableTrayConduitBaseProxy> FindTraceElementsInLevel(ElectricalElementProxy element, TraceNetwork traceNetwork = null)
+    internal List<CableTrayConduitBaseProxy> FindTraceElementsInLevel(TraceElectricalElementProxy element, TraceNetwork traceNetwork = null)
     {
         var level = element.Level;
 
@@ -422,7 +422,7 @@ public class NetworkElements
 
     private static List<CableTrayConduitBaseProxy> GetTraceCableTrayConduitServiceType(
         List<CableTrayConduitBaseProxy> traceCableTrayConduits,
-        ElectricalElementProxy element)
+        TraceElectricalElementProxy element)
     {
         var serviceType = element.ServiceType;
 
@@ -463,14 +463,14 @@ public class NetworkElements
         return nearestTraceElement;
     }
 
-    internal static ElectricalElementProxy FindNearestElement(
-        List<ElectricalElementProxy> elements,
-        ElectricalElementProxy currentElement)
+    internal static TraceElectricalElementProxy FindNearestElement(
+        List<TraceElectricalElementProxy> elements,
+        TraceElectricalElementProxy currentElement)
     {
         if (currentElement?.LocationPoint == null || !elements.Any())
             return null;
 
-        ElectricalElementProxy nearestElement = null;
+        TraceElectricalElementProxy nearestElement = null;
 
         var currentPoint = currentElement.LocationPoint; 
         var minRatingDistance = // currentElement.TraceBinding is CableTrayConduitBaseProxy cableTrayConduit ? currentPoint.RatingDistanceToSegment(cableTrayConduit.Point1, cableTrayConduit.Point2) :
@@ -494,9 +494,9 @@ public class NetworkElements
         return nearestElement;
     }
 
-    private static List<ElectricalElementProxy> GetElementsSystemType(
-        List<ElectricalElementProxy> elements,
-        ElectricalElementProxy currentElement)
+    private static List<TraceElectricalElementProxy> GetElementsSystemType(
+        List<TraceElectricalElementProxy> elements,
+        TraceElectricalElementProxy currentElement)
     {
         var serviceType = currentElement.ServiceType;
 
@@ -512,13 +512,13 @@ public class NetworkElements
             : elements;
     }
 
-    internal ElectricalElementProxy FindFarthestElement(IList<ElectricalElementProxy> elements,
-        ElectricalElementProxy currentElement)
+    internal TraceElectricalElementProxy FindFarthestElement(IList<TraceElectricalElementProxy> elements,
+        TraceElectricalElementProxy currentElement)
     {
         if (currentElement?.LocationPoint == null || !elements.Any())
             return null;
 
-        ElectricalElementProxy nearestElement = null;
+        TraceElectricalElementProxy nearestElement = null;
 
         var maxRatingDistance = 0d;
         var currentPoint = currentElement.LocationPoint;
@@ -540,6 +540,6 @@ public class NetworkElements
         return nearestElement;
     }
 
-    private static bool InRoom(ElectricalElementProxy element) => element.Room is { RevitId: > 0 };
+    private static bool InRoom(TraceElectricalElementProxy element) => element.Room is { RevitId: > 0 };
     private static bool OutsideRoom(CableTrayConduitBaseProxy element) => !element.Rooms.Any() || element.Rooms.All(x => x.RevitId < 0);
 }

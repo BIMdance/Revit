@@ -117,7 +117,7 @@ public class NetworkDrawer
         DrawBinding(_electricalSystemConverter.Convert(electricalSystem));
     }
 
-    public void DrawBinding(ElectricalSystemProxy electricalSystemProxy)
+    public void DrawBinding(TraceElectricalSystemProxy electricalSystemProxy)
     {
         if (_networkElements is null)
             return;
@@ -134,7 +134,7 @@ public class NetworkDrawer
             DrawBinding(element);
     }
 
-    public void DrawBinding(ElectricalElementProxy element)
+    public void DrawBinding(TraceElectricalElementProxy element)
     {
         if (element == null)
         {
@@ -242,12 +242,12 @@ public class NetworkDrawer
         }
     }
 
-    private static Point3D GetEndPoint(ElectricalElementProxy element)
+    private static Point3D GetEndPoint(TraceElectricalElementProxy element)
     {
         var endPoint = element.TraceBinding switch
         {
             CableTrayConduitBaseProxy cableTrayConduit => element.LocationPoint.ProjectToSegment(cableTrayConduit.Point1, cableTrayConduit.Point2),
-            ElectricalElementProxy bindingElement => bindingElement.LocationPoint,
+            TraceElectricalElementProxy bindingElement => bindingElement.LocationPoint,
             _ => null
         };
 

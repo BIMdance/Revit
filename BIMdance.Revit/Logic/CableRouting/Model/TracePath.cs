@@ -1,22 +1,22 @@
-﻿namespace BIMdance.Revit.Model.CableRouting;
+﻿namespace BIMdance.Revit.Logic.CableRouting.Model;
 
 public class TracePath
 {
     public TracePath(
-        ElectricalElementProxy electricalElement,
+        TraceElectricalElementProxy electricalElement,
         TracePathType tracePathType = TracePathType.ByCableTrayConduit,
         bool directPathToBaseEquipment = false)
     {
         TracePathType = tracePathType;
         ElectricalElement = electricalElement;
         DirectPathToBaseEquipment = directPathToBaseEquipment;
-        Connectors = new List<ConnectorProxy>();
+        Connectors = new List<TraceConnectorProxy>();
         TraceElements = new HashSet<TraceElement>();
-        ConnectorTracks = new Dictionary<ConnectorProxy, double[]>();
+        ConnectorTracks = new Dictionary<TraceConnectorProxy, double[]>();
     }
 
     public TracePath(
-        ElectricalElementProxy electricalElement, ConnectorProxy connector) : this(electricalElement)
+        TraceElectricalElementProxy electricalElement, TraceConnectorProxy connector) : this(electricalElement)
     {
         Connectors.Add(connector);
         TraceElements.Add(connector.Element);
@@ -30,9 +30,9 @@ public class TracePath
         DistanceToBinding = tracePath.DistanceToBinding;
         DistanceToBaseEquipmentBinding = tracePath.DistanceToBaseEquipmentBinding;
         DistanceInCableTray = tracePath.DistanceInCableTray;
-        Connectors = new List<ConnectorProxy>(tracePath.Connectors);
+        Connectors = new List<TraceConnectorProxy>(tracePath.Connectors);
         TraceElements = new HashSet<TraceElement>(tracePath.TraceElements);
-        ConnectorTracks = new Dictionary<ConnectorProxy, double[]>(tracePath.ConnectorTracks);
+        ConnectorTracks = new Dictionary<TraceConnectorProxy, double[]>(tracePath.ConnectorTracks);
 
         // DirectPathToBaseEquipment = tracePath.DirectPathToBaseEquipment; - нельзя использовать
         // DirectPathToBaseEquipment == true должен быть только один
@@ -40,16 +40,16 @@ public class TracePath
         // у остальных экземпляров DirectPathToBaseEquipment должен быть false
     }
 
-    public ElectricalElementProxy ElectricalElement { get; set; }
+    public TraceElectricalElementProxy ElectricalElement { get; set; }
     public bool DirectPathToBaseEquipment { get; }
     public TracePathType TracePathType { get; set; }
     public double Distance { get; set; }
     public double DistanceToBinding { get; set; }
     public double DistanceToBaseEquipmentBinding { get; set; }
     public double DistanceInCableTray { get; set; }
-    public List<ConnectorProxy> Connectors { get; }
+    public List<TraceConnectorProxy> Connectors { get; }
     public HashSet<TraceElement> TraceElements { get; }
-    public Dictionary<ConnectorProxy, double[]> ConnectorTracks { get; }
+    public Dictionary<TraceConnectorProxy, double[]> ConnectorTracks { get; }
 
     public void AddDistance(double distance, TraceElement traceElement)
     {
@@ -64,19 +64,19 @@ public class TracePath
         }
     }
 
-    public void AddConnector(ConnectorProxy traceConnector) //, double distance)
+    public void AddConnector(TraceConnectorProxy traceConnector) //, double distance)
     {
         Connectors.Add(traceConnector);
     }
 
-    public void AddTrackConnector(ConnectorProxy connector, double distance, double distanceInCableTray)
+    public void AddTrackConnector(TraceConnectorProxy connector, double distance, double distanceInCableTray)
     {
         if (connector != null &&
             !ConnectorTracks.ContainsKey(connector))
             ConnectorTracks.Add(connector, new[] { distance, distanceInCableTray });
     }
 
-    public ConnectorProxy GetNextTraceConnector(ConnectorProxy connector) //, ref double distance)
+    public TraceConnectorProxy GetNextTraceConnector(TraceConnectorProxy connector) //, ref double distance)
     {
         var traceElement = connector?.Element;
         var nextConnector = traceElement?.GetNextConnector(connector);
@@ -91,7 +91,7 @@ public class TracePath
         return new TracePath(this);
     }
 
-    public TracePath SetTrace(ElectricalSystemProxy electricalSystem, ConnectorProxy inTraceConnector, ConnectionTopology topology)
+    public TracePath SetTrace(TraceElectricalSystemProxy electricalSystem, TraceConnectorProxy inTraceConnector, ConnectionTopology topology)
     {
         var baseEquipment = electricalSystem.BaseEquipment;
         var toBaseEquipmentConnector = GetNextTraceConnectorInTraceElement(electricalSystem, inTraceConnector, topology);
@@ -152,8 +152,8 @@ public class TracePath
         return this;
     }
 
-    private ConnectorProxy GetNextTraceConnectorInTraceElement(
-        ElectricalSystemProxy electricalCircuit, ConnectorProxy inTraceConnector, ConnectionTopology topology)
+    private TraceConnectorProxy GetNextTraceConnectorInTraceElement(
+        TraceElectricalSystemProxy electricalCircuit, TraceConnectorProxy inTraceConnector, ConnectionTopology topology)
     {
         var baseEquipment = electricalCircuit.BaseEquipment;
         var traceNetworkElement = inTraceConnector.Element;
@@ -224,8 +224,8 @@ public class TracePath
     }
 
     private static void SetToBaseEquipmentConnectorsInCableTrayConduit(
-        ElectricalSystemProxy electricalCircuit,
-        ConnectorProxy traceConnector,
+        TraceElectricalSystemProxy electricalCircuit,
+        TraceConnectorProxy traceConnector,
         TracePath trackConnectorTracePath)
     {
         var refTraceConnector = traceConnector.RefConnector;

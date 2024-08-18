@@ -1,6 +1,4 @@
-﻿using BIMdance.Revit.Utils.Revit.Electrical;
-
-namespace BIMdance.Revit.Logic.CableRouting;
+﻿namespace BIMdance.Revit.Logic.CableRouting;
 
 public class NetworkConverter : ProxyConverter<TraceNetwork>
 {
@@ -59,7 +57,7 @@ public class NetworkConverter : ProxyConverter<TraceNetwork>
             traceElement.ContainsConnector(connector.Id))
             return;
 
-        var traceConnector = RevitMapper.Map<Connector, ConnectorProxy>(connector);
+        var traceConnector = RevitMapper.Map<Connector, TraceConnectorProxy>(connector);
         traceElement.AddConnector(traceConnector);
 
         var refConnector = connector.GetRefConnector();
@@ -73,19 +71,19 @@ public class NetworkConverter : ProxyConverter<TraceNetwork>
         
         switch (traceElement)
         {
-            case CableTrayConduitBaseProxy cableTrayConduitProxy when refTraceElement is ElectricalElementProxy electricalElement:
+            case CableTrayConduitBaseProxy cableTrayConduitProxy when refTraceElement is TraceElectricalElementProxy electricalElement:
                 electricalElement.AddTraceElement(cableTrayConduitProxy);
                 break;
 
-            case ElectricalElementProxy electricalElement when refTraceElement is CableTrayConduitBaseProxy cableTrayConduitProxy:
+            case TraceElectricalElementProxy electricalElement when refTraceElement is CableTrayConduitBaseProxy cableTrayConduitProxy:
                 electricalElement.AddTraceElement(cableTrayConduitProxy);
                 break;
 
-            case ElectricalElementProxy electricalElement when refTraceElement is not null:
+            case TraceElectricalElementProxy electricalElement when refTraceElement is not null:
                 electricalElement.AddTraceElement(refTraceElement);
                 break;
 
-            case not null when refTraceElement is ElectricalElementProxy electricalElement:
+            case not null when refTraceElement is TraceElectricalElementProxy electricalElement:
                 electricalElement.AddTraceElement(traceElement);
                 break;
         }
@@ -94,7 +92,7 @@ public class NetworkConverter : ProxyConverter<TraceNetwork>
             refTraceElement.ContainsConnector(refConnector.Id))
             return;
 
-        var refConnectorProxy = RevitMapper.Map<Connector, ConnectorProxy>(refConnector);
+        var refConnectorProxy = RevitMapper.Map<Connector, TraceConnectorProxy>(refConnector);
         
         traceConnector.AddRefConnector(refConnectorProxy);
         refTraceElement.AddConnector(refConnectorProxy);
@@ -119,7 +117,7 @@ public class NetworkConverter : ProxyConverter<TraceNetwork>
                 is BuiltInCategory.OST_CableTrayFitting
                 or BuiltInCategory.OST_ConduitFitting =>
                 RevitMapper.Map<FamilyInstance, CableTrayConduitFittingProxy>(familyInstance),
-            FamilyInstance familyInstance => RevitMapper.Map<FamilyInstance, ElectricalElementProxy>(familyInstance),
+            FamilyInstance familyInstance => RevitMapper.Map<FamilyInstance, TraceElectricalElementProxy>(familyInstance),
             _ => throw new ArgumentOutOfRangeException(nameof(currentElement), currentElement, null)
         };
 

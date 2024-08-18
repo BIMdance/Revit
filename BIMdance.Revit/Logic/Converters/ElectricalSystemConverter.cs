@@ -4,7 +4,7 @@ public class ElectricalSystemConverter
 {
     private readonly Document _document;
     private readonly BuildingProxy _buildingProxy;
-    private Dictionary<long, ElectricalElementProxy> _baseEquipments;
+    private Dictionary<long, TraceElectricalElementProxy> _baseEquipments;
 
     public ElectricalSystemConverter(Document document, BuildingProxy buildingProxy)
     {
@@ -12,9 +12,9 @@ public class ElectricalSystemConverter
         _buildingProxy = buildingProxy;
     }
 
-    public List<ElectricalSystemProxy> Convert(params long[] electricalSystemIds)
+    public List<TraceElectricalSystemProxy> Convert(params long[] electricalSystemIds)
     {
-        _baseEquipments = new Dictionary<long, ElectricalElementProxy>();
+        _baseEquipments = new Dictionary<long, TraceElectricalElementProxy>();
 
         var electricalSystems = new FilteredElementCollector(_document)
             .OfClass(typeof(ElectricalSystem))
@@ -26,9 +26,9 @@ public class ElectricalSystemConverter
         return electricalSystems;
     }
 
-    public ElectricalSystemProxy Convert(int electricalSystemId)
+    public TraceElectricalSystemProxy Convert(int electricalSystemId)
     {
-        _baseEquipments = new Dictionary<long, ElectricalElementProxy>();
+        _baseEquipments = new Dictionary<long, TraceElectricalElementProxy>();
 
         return GetElectricalSystemProxy(new FilteredElementCollector(_document)
             .OfClass(typeof(ElectricalSystem))
@@ -36,18 +36,18 @@ public class ElectricalSystemConverter
             .FirstOrDefault(x => electricalSystemId == x.Id.GetValue()));
     }
 
-    public ElectricalSystemProxy Convert(ElectricalSystem electricalSystem)
+    public TraceElectricalSystemProxy Convert(ElectricalSystem electricalSystem)
     {
-        _baseEquipments = new Dictionary<long, ElectricalElementProxy>();
+        _baseEquipments = new Dictionary<long, TraceElectricalElementProxy>();
 
         return GetElectricalSystemProxy(electricalSystem);
     }
 
-    private ElectricalSystemProxy GetElectricalSystemProxy(ElectricalSystem electricalSystem)
+    private TraceElectricalSystemProxy GetElectricalSystemProxy(ElectricalSystem electricalSystem)
     {
         try
         {
-            var proxy = RevitMapper.Map<ElectricalSystem, ElectricalSystemProxy>(electricalSystem);
+            var proxy = RevitMapper.Map<ElectricalSystem, TraceElectricalSystemProxy>(electricalSystem);
             AddBaseEquipment(electricalSystem, proxy);
             SetProperties(proxy);
             return proxy;
@@ -55,11 +55,11 @@ public class ElectricalSystemConverter
         catch (Exception exception)
         {
             Logger.Error(exception);
-            return new ElectricalSystemProxy();
+            return new TraceElectricalSystemProxy();
         }
     }
 
-    private void AddBaseEquipment(MEPSystem x, ElectricalSystemProxy proxy)
+    private void AddBaseEquipment(MEPSystem x, TraceElectricalSystemProxy proxy)
     {
         if (x.BaseEquipment == null)
             return;
@@ -70,19 +70,19 @@ public class ElectricalSystemConverter
         }
         else
         {
-            var baseEquipment = RevitMapper.Map<FamilyInstance, ElectricalElementProxy>(x.BaseEquipment);
+            var baseEquipment = RevitMapper.Map<FamilyInstance, TraceElectricalElementProxy>(x.BaseEquipment);
             _baseEquipments.Add(baseEquipment.RevitId, baseEquipment);
             Connect(proxy, baseEquipment);
         }
     }
 
-    private static void Connect(ElectricalSystemProxy electricalSystem, ElectricalElementProxy baseEquipment)
+    private static void Connect(TraceElectricalSystemProxy electricalSystem, TraceElectricalElementProxy baseEquipment)
     {
         electricalSystem.BaseEquipment = baseEquipment;
         baseEquipment.ElectricalSystems.Add(electricalSystem);
     }
 
-    private void SetProperties(ElectricalSystemProxy electricalSystem)
+    private void SetProperties(TraceElectricalSystemProxy electricalSystem)
     {
         var baseEquipment = electricalSystem.BaseEquipment;
 

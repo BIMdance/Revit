@@ -1,4 +1,4 @@
-namespace BIMdance.Revit.Model.CableRouting;
+namespace BIMdance.Revit.Logic.CableRouting.Model;
 
 public class TraceNetwork
 {
@@ -8,9 +8,9 @@ public class TraceNetwork
     }
 
     public int Id { get; }
-    public List<ConnectorProxy> Connectors { get; } = new();
+    public List<TraceConnectorProxy> Connectors { get; } = new();
     public Dictionary<long, TraceElement> TraceElements { get; } = new();
-    public Dictionary<long, ElectricalElementProxy> ElectricalElements { get; } = new();
+    public Dictionary<long, TraceElectricalElementProxy> ElectricalElements { get; } = new();
 
     public TraceElement AddElement(TraceElement traceElement)
     {
@@ -18,7 +18,7 @@ public class TraceNetwork
 
         switch (traceElement)
         {
-            case ElectricalElementProxy electricalElement:
+            case TraceElectricalElementProxy electricalElement:
                 ElectricalElements.Add(electricalElement.RevitId, electricalElement);
                 break;
 

@@ -40,12 +40,10 @@ global using Kivikko.Json;
 
 global using BIMdance.Revit.Application;
 global using BIMdance.Revit.Logic;
-global using BIMdance.Revit.Logic.CableRouting;
 global using BIMdance.Revit.Logic.Converters;
 global using BIMdance.Revit.Logic.Mapping;
 global using BIMdance.Revit.Logic.Utils;
 global using BIMdance.Revit.Model;
-global using BIMdance.Revit.Model.CableRouting;
 global using BIMdance.Revit.Model.Geometry;
 global using BIMdance.Revit.Model.RevitProxy;
 global using BIMdance.Revit.Resources;

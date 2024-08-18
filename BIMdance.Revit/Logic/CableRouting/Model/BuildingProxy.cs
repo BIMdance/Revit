@@ -1,4 +1,4 @@
-﻿namespace BIMdance.Revit.Model.RevitProxy;
+﻿namespace BIMdance.Revit.Logic.CableRouting.Model;
 
 public class BuildingProxy
 {
@@ -65,7 +65,7 @@ public class BuildingProxy
     
     public RoomProxy GetRoom(int revitId) => Rooms.FirstOrDefault(n => n.RevitId == revitId);
 
-    public RoomProxy GetRoom(ElectricalElementProxy electricalElement)
+    public RoomProxy GetRoom(TraceElectricalElementProxy electricalElement)
     {
         if (electricalElement.RoomId > 0)
         {

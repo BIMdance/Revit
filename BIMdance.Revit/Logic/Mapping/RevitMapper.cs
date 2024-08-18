@@ -23,11 +23,11 @@ public static class RevitMapper
         
         AddCreate<CableTray, CableTrayProxy>(CreateCableTrayProxy);
         AddCreate<Conduit, ConduitProxy>(CreateConduitProxy);
-        AddCreate<Connector, ConnectorProxy>(CreateConnectorProxy);
+        AddCreate<Connector, TraceConnectorProxy>(CreateConnectorProxy);
         AddCreate<Curve, Line3D>(CreateSegmentProxy);
-        AddCreate<ElectricalSystem, ElectricalSystemProxy>(CreateElectricalSystemProxy);
+        AddCreate<ElectricalSystem, TraceElectricalSystemProxy>(CreateElectricalSystemProxy);
         AddCreate<FamilyInstance, CableTrayConduitFittingProxy>(CreateCableTrayConduitFittingProxy);
-        AddCreate<FamilyInstance, ElectricalElementProxy>(CreateElectricalElementProxy);
+        AddCreate<FamilyInstance, TraceElectricalElementProxy>(CreateElectricalElementProxy);
         AddCreate<Level, LevelProxy>(CreateLevelProxy);
         AddCreate<Line, Line3D>(CreateSegmentProxy);
         AddCreate<Room, RoomProxy>(CreateRoomProxy);
@@ -39,7 +39,7 @@ public static class RevitMapper
         // AddModify<CableTrayProxy, CableTrayConduitBase>(ModifyCableTrayConduitBase);
         // AddModify<ConduitProxy, CableTrayConduitBase>(ModifyCableTrayConduitBase);
         AddModify<CableTrayConduitBaseProxy, CableTrayConduitBase>(ModifyCableTrayConduitBase);
-        AddModify<ElectricalSystemProxy, ElectricalSystem>(ModifyElectricalSystem);
+        AddModify<TraceElectricalSystemProxy, ElectricalSystem>(ModifyElectricalSystem);
         
         return dictionary;
         
@@ -82,7 +82,7 @@ public static class RevitMapper
         ServiceType = conduit.get_Parameter(BuiltInParameter.RBS_CTC_SERVICE_TYPE).AsString(),
     };
 
-    private static ConnectorProxy CreateConnectorProxy(Connector connector) =>
+    private static TraceConnectorProxy CreateConnectorProxy(Connector connector) =>
         new(connector.Id, point: Map<XYZ, Point3D>(connector.Origin));
     
     private static CableTrayConduitFittingProxy CreateCableTrayConduitFittingProxy(FamilyInstance familyInstance) => new()
@@ -90,9 +90,9 @@ public static class RevitMapper
         RevitId = familyInstance.Id.GetValue(),
     };
     
-    private static ElectricalElementProxy CreateElectricalElementProxy(FamilyInstance familyInstance)
+    private static TraceElectricalElementProxy CreateElectricalElementProxy(FamilyInstance familyInstance)
     {
-        var electricalElementProxy = new ElectricalElementProxy
+        var electricalElementProxy = new TraceElectricalElementProxy
         {
             Name = familyInstance.Name,
             RevitId = familyInstance.Id.GetValue(),
@@ -107,7 +107,7 @@ public static class RevitMapper
         return electricalElementProxy;
     }
 
-    private static ElectricalSystemProxy CreateElectricalSystemProxy(ElectricalSystem electricalSystem) => new()
+    private static TraceElectricalSystemProxy CreateElectricalSystemProxy(ElectricalSystem electricalSystem) => new()
     {
         Name = electricalSystem.Name,
         RevitId = electricalSystem.Id.GetValue(),
@@ -115,7 +115,7 @@ public static class RevitMapper
         CableDiameter = AsDouble(electricalSystem, Constants.SharedParameters.Cable.Diameter, 0d),
         CablesCount = AsInteger(electricalSystem, Constants.SharedParameters.Cable.Count, 1),
         CircuitDesignation = AsString(electricalSystem, Constants.SharedParameters.Circuit.Designation, string.Empty),
-        Elements = electricalSystem.Elements.OfType<FamilyInstance>().Select(Map<FamilyInstance, ElectricalElementProxy>).ToList(),
+        Elements = electricalSystem.Elements.OfType<FamilyInstance>().Select(Map<FamilyInstance, TraceElectricalElementProxy>).ToList(),
         Topology = (ConnectionTopology)AsInteger(electricalSystem, Constants.SharedParameters.Circuit.Topology, 0),
     };
 
@@ -143,7 +143,7 @@ public static class RevitMapper
     private static XYZ CreateXYZ(Point3D xyz) =>
         new(xyz.X, xyz.Y, xyz.Z);
 
-    private static ElectricalSystem ModifyElectricalSystem(ElectricalSystemProxy electricalSystemProxy, ElectricalSystem electricalSystem)
+    private static ElectricalSystem ModifyElectricalSystem(TraceElectricalSystemProxy electricalSystemProxy, ElectricalSystem electricalSystem)
     {
         electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Count)?.Set(electricalSystemProxy.CablesCount);
         electricalSystem.get_Parameter(Constants.SharedParameters.Cable.Length)?.Set(electricalSystemProxy.CableLength.MillimetersToInternal());
@@ -165,7 +165,7 @@ public static class RevitMapper
         return revit;
     }
 
-    private static void SetLevelAndRoomId(FamilyInstance src, ElectricalElementProxy dest)
+    private static void SetLevelAndRoomId(FamilyInstance src, TraceElectricalElementProxy dest)
     {
         var levelId = src.GetLevelId();
 
@@ -184,7 +184,7 @@ public static class RevitMapper
         dest.RoomId = roomAtPoint?.Id.GetValue() ?? -1;
     }
 
-    private static void SetTraceBinding(FamilyInstance src, ElectricalElementProxy dest)
+    private static void SetTraceBinding(FamilyInstance src, TraceElectricalElementProxy dest)
     {
         var traceBindingParameter = src?.get_Parameter(Constants.SharedParameters.CableTrayConduitIds);
         

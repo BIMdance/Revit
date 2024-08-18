@@ -1,4 +1,4 @@
-namespace BIMdance.Revit.Model.RevitProxy;
+namespace BIMdance.Revit.Logic.CableRouting.Model;
 
 public abstract class CableTrayConduitBaseProxy : TraceElement
 {
@@ -15,11 +15,11 @@ public abstract class CableTrayConduitBaseProxy : TraceElement
 
     public override string ToString() => $"[{RevitId}] {Point1} <-> {Point2}";
     
-    public override ConnectorProxy CreateStartConnector(ElectricalElementProxy electricalElement)
+    public override TraceConnectorProxy CreateStartConnector(TraceElectricalElementProxy electricalElement)
     {
         var idStartConnector = this.GetNewStartConnectorId();
         var projectPoint = electricalElement.LocationPoint.ProjectToSegment(Point1, Point2);
-        var startConnector = new ConnectorProxy(this, idStartConnector, projectPoint);
+        var startConnector = new TraceConnectorProxy(this, idStartConnector, projectPoint);
             
         return startConnector;
     }

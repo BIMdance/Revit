@@ -2,21 +2,21 @@
 
 public class NetworkPathfinder
 {
-    private readonly ElectricalElementProxy _baseEquipment;
+    private readonly TraceElectricalElementProxy _baseEquipment;
     private readonly NetworkElements _networkElements;
     private readonly bool _existsDirectTraceToBaseEquipment;
     private HashSet<TraceElement> _circuitTraceElements = new();
-    private Dictionary<ElectricalElementProxy, TracePath> _fromElementToBaseEquipmentTracePaths = new();
+    private Dictionary<TraceElectricalElementProxy, TracePath> _fromElementToBaseEquipmentTracePaths = new();
     
-    private ElectricalElementProxy _electricalElement;
-    private ElectricalSystemProxy _electricalSystem;
+    private TraceElectricalElementProxy _electricalElement;
+    private TraceElectricalSystemProxy _electricalSystem;
     private TracePath _elementTracePathResult;
     private ConnectionTopology _topology;
     private List<TracePath> _elementTracePaths;
     private List<TraceElement> _lockElements;
     private double _distanceToBinding;
 
-    public NetworkPathfinder(ElectricalElementProxy baseEquipment, NetworkElements networkElements)
+    public NetworkPathfinder(TraceElectricalElementProxy baseEquipment, NetworkElements networkElements)
     {
         _baseEquipment = baseEquipment;
         _networkElements = networkElements;
@@ -26,26 +26,26 @@ public class NetworkPathfinder
     }
 
     private void CreateBaseEquipmentConnector(
-        ElectricalElementProxy baseEquipment,
+        TraceElectricalElementProxy baseEquipment,
         TraceElement traceElement)
     {
         var baseEquipmentConnectorId = traceElement.GetNewStartConnectorId();
         var baseEquipmentProjectPoint = traceElement is CableTrayConduitBaseProxy cableTrayConduit
             ? baseEquipment.LocationPoint.ProjectToLine(cableTrayConduit.Point1, cableTrayConduit.Point2)
             : traceElement.GetNearestConnector(baseEquipment.LocationPoint).Point;
-        var baseEquipmentConnector = new ConnectorProxy(traceElement, baseEquipmentConnectorId, baseEquipmentProjectPoint);
+        var baseEquipmentConnector = new TraceConnectorProxy(traceElement, baseEquipmentConnectorId, baseEquipmentProjectPoint);
         var directTracePathToBaseEquipment = new TracePath(baseEquipment, TracePathType.ByCableTrayConduit, true);
 
         baseEquipmentConnector.AddTracePathToBaseEquipment(baseEquipment, directTracePathToBaseEquipment);
     }
 
-    public void SetElectricalSystem(ElectricalSystemProxy electricalSystem)
+    public void SetElectricalSystem(TraceElectricalSystemProxy electricalSystem)
     {
         _electricalSystem = electricalSystem; 
         _topology = _electricalSystem.Topology;
     }
     
-    public TracePath BuildTracePath(ElectricalElementProxy electricalElement)
+    public TracePath BuildTracePath(TraceElectricalElementProxy electricalElement)
     {
         ResetTracePathsToBaseEquipment();
 
@@ -73,7 +73,7 @@ public class NetworkPathfinder
         {
             return _electricalElement.TraceBinding switch
             {
-                ElectricalElementProxy bindingElement => bindingElement.Equals(_baseEquipment)
+                TraceElectricalElementProxy bindingElement => bindingElement.Equals(_baseEquipment)
                     ? BuildTracePathFromBaseEquipment()
                     : GetTracePathFromBinding(bindingElement),
                 { } traceElement => FindPathToBaseEquipment(traceElement)
@@ -136,7 +136,7 @@ public class NetworkPathfinder
         return tracePathFromBaseEquipment;
     }
 
-    private TracePath GetTracePathFromBinding(ElectricalElementProxy bindingElement)
+    private TracePath GetTracePathFromBinding(TraceElectricalElementProxy bindingElement)
     {
         if (!_fromElementToBaseEquipmentTracePaths.TryGetValue(bindingElement, out var nodeTracePath))
         {
@@ -187,7 +187,7 @@ public class NetworkPathfinder
         CreateStartTracePaths(startConnector);
     }
 
-    private void CreateStartTracePaths(ConnectorProxy startConnector)
+    private void CreateStartTracePaths(TraceConnectorProxy startConnector)
     {
         var startTraceCableTrayConduit = startConnector.Element;
         _lockElements.Add(startTraceCableTrayConduit);
@@ -195,7 +195,7 @@ public class NetworkPathfinder
         startTraceCableTrayConduit.Connectors.ToList().ForEach(n => CreateStartTracePath(startConnector, n));
     }
 
-    private void CreateStartTracePath(ConnectorProxy startConnector, ConnectorProxy traceConnector)
+    private void CreateStartTracePath(TraceConnectorProxy startConnector, TraceConnectorProxy traceConnector)
     {
         var startTraceCableTrayConduit = startConnector.Element;
         var tracePath = new TracePath(_electricalElement, startConnector) { DistanceToBinding = _distanceToBinding, };
@@ -274,7 +274,7 @@ public class NetworkPathfinder
         return tracePath;
     }
 
-    private void AddTracePathBranchesOfTraceElement(TracePath tracePath, ConnectorProxy inTraceConnector)
+    private void AddTracePathBranchesOfTraceElement(TracePath tracePath, TraceConnectorProxy inTraceConnector)
     {
         var elementFitting = inTraceConnector.Element;
 
@@ -300,7 +300,7 @@ public class NetworkPathfinder
         _elementTracePaths = _elementTracePaths.OrderBy(n => n.Distance).ToList();
     }
 
-    private void AddTracePathBranch(TracePath elementTracePath, ConnectorProxy fittingOutTraceConnector)
+    private void AddTracePathBranch(TracePath elementTracePath, TraceConnectorProxy fittingOutTraceConnector)
     {
         var fittingTraceElement = fittingOutTraceConnector?.Element;
         var nextInTraceConnector = fittingOutTraceConnector?.RefConnector;
@@ -315,7 +315,7 @@ public class NetworkPathfinder
         }
     }
 
-    private bool SpecialTraceElement(TracePath elementTracePath, ConnectorProxy inTraceConnector)
+    private bool SpecialTraceElement(TracePath elementTracePath, TraceConnectorProxy inTraceConnector)
     {
         if (ExistsPathToBaseEquipment(inTraceConnector.Element) || ElementIsFitting(inTraceConnector.Element))
         {
@@ -332,7 +332,7 @@ public class NetworkPathfinder
     private static bool ElementIsFitting(TraceElement traceElement) =>
         traceElement?.ConnectorsCount > 2;
 
-    private void AddTracePathToList(TracePath tracePath, ConnectorProxy inTraceConnector)
+    private void AddTracePathToList(TracePath tracePath, TraceConnectorProxy inTraceConnector)
     {
         if (_lockElements.Contains(inTraceConnector.Element)) return;
 
@@ -347,7 +347,7 @@ public class NetworkPathfinder
     private void ResetTracePathsToBaseEquipment()
     {
         _circuitTraceElements = new HashSet<TraceElement>();
-        _fromElementToBaseEquipmentTracePaths = new Dictionary<ElectricalElementProxy, TracePath>();
+        _fromElementToBaseEquipmentTracePaths = new Dictionary<TraceElectricalElementProxy, TracePath>();
         _lockElements = new List<TraceElement>();
         _elementTracePathResult = null;
         _elementTracePaths = new List<TracePath>();

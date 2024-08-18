@@ -28,7 +28,7 @@ public class NetworkCalculator
     public string Calculate()
     {
         var electricalSystems = _electricalSystemConverter.Convert().Where(x => x.BaseEquipment != null).ToList();
-        var baseEquipments = electricalSystems.Select(x => x.BaseEquipment).Distinct(new RevitIdEqualityComparer<ElectricalElementProxy>()).ToList();
+        var baseEquipments = electricalSystems.Select(x => x.BaseEquipment).Distinct(new RevitIdEqualityComparer<TraceElectricalElementProxy>()).ToList();
         electricalSystems.ForEach(electricalSystem =>
         {
             var baseEquipment = baseEquipments.FirstOrDefault(x => x.RevitId == electricalSystem.BaseEquipment.RoomId);
@@ -43,7 +43,7 @@ public class NetworkCalculator
         foreach (var baseEquipment in baseEquipments)
         {
             var network = networks.FirstOrDefault(x => x.GetElement(baseEquipment.RevitId) != null);
-            var prototype = network?.GetElement(baseEquipment.RevitId) as ElectricalElementProxy;
+            var prototype = network?.GetElement(baseEquipment.RevitId) as TraceElectricalElementProxy;
             baseEquipment.PullTraceBinding(prototype);
             Calculate(network, baseEquipment);
         }
@@ -55,7 +55,7 @@ public class NetworkCalculator
                $"\n\t{string.Join("\n\t", networks.Select(x => $"{x}"))}";
     }
 
-    private void Calculate(TraceNetwork network, ElectricalElementProxy baseEquipment)
+    private void Calculate(TraceNetwork network, TraceElectricalElementProxy baseEquipment)
     {
         _networkElements.SetTraceBinding(baseEquipment);
         _networkPathfinder = new NetworkPathfinder(baseEquipment, _networkElements);
@@ -66,7 +66,7 @@ public class NetworkCalculator
             // if (electricalCircuit.LockCableLength)
             //     continue;
             
-            electricalSystem.Elements.ForEach(x => x.PullTraceBinding(network?.GetElement(x.RevitId) as ElectricalElementProxy));
+            electricalSystem.Elements.ForEach(x => x.PullTraceBinding(network?.GetElement(x.RevitId) as TraceElectricalElementProxy));
 
             switch (electricalSystem.Topology)
             {
@@ -87,7 +87,7 @@ public class NetworkCalculator
         }
     }
 
-    private void CalculateStarTree(ElectricalSystemProxy electricalSystem, double distanceFromPanelToTraceNode)
+    private void CalculateStarTree(TraceElectricalSystemProxy electricalSystem, double distanceFromPanelToTraceNode)
     {
         var baseEquipment = electricalSystem.BaseEquipment;
         var cableLength = 0d;
@@ -183,15 +183,15 @@ public class NetworkCalculator
         electricalSystem.CableLengthMax = maxCableLength.MillimetersFromInternal();
     }
 
-    private void CalculateBus(ElectricalSystemProxy electricalCircuit, double distanceFromPanelToTraceNode)
+    private void CalculateBus(TraceElectricalSystemProxy electricalCircuit, double distanceFromPanelToTraceNode)
     {
     }
 
-    private void CalculateRing(ElectricalSystemProxy electricalCircuit, double distanceFromPanelToTraceNode)
+    private void CalculateRing(TraceElectricalSystemProxy electricalCircuit, double distanceFromPanelToTraceNode)
     {
     }
 
-    private static List<ElectricalElementProxy> GetElementsToElements(ElectricalSystemProxy electricalSystem)
+    private static List<TraceElectricalElementProxy> GetElementsToElements(TraceElectricalSystemProxy electricalSystem)
     {
         var electricalPanel = electricalSystem.BaseEquipment;
         var elementsToValidBindings = GetElementsToValidBindings(electricalSystem);
@@ -208,16 +208,16 @@ public class NetworkCalculator
         return elementsToValidBindings;
     }
 
-    private static List<ElectricalElementProxy> GetElementsToElements(ElectricalSystemProxy electricalSystem,
-        ElectricalElementProxy baseEquipment)
+    private static List<TraceElectricalElementProxy> GetElementsToElements(TraceElectricalSystemProxy electricalSystem,
+        TraceElectricalElementProxy baseEquipment)
     {
         return electricalSystem.Elements
-            .Where(n => n.TraceBinding is ElectricalElementProxy)
+            .Where(n => n.TraceBinding is TraceElectricalElementProxy)
             .OrderBy(n => n.LocationPoint.RatingDistanceTo(baseEquipment.LocationPoint))
             .ToList();
     }
 
-    private static List<ElectricalElementProxy> GetElementsToValidBindings(ElectricalSystemProxy electricalSystem)
+    private static List<TraceElectricalElementProxy> GetElementsToValidBindings(TraceElectricalSystemProxy electricalSystem)
     {
         var baseEquipment = electricalSystem.BaseEquipment;
 
@@ -228,14 +228,14 @@ public class NetworkCalculator
             .ToList();
     }
 
-    private static void OrderElementsBindings(ElectricalElementProxy element,
-        List<ElectricalElementProxy> elementsToValidBindings,
-        List<ElectricalElementProxy> elementsToElements)
+    private static void OrderElementsBindings(TraceElectricalElementProxy element,
+        List<TraceElectricalElementProxy> elementsToValidBindings,
+        List<TraceElectricalElementProxy> elementsToElements)
     {
-        var binding = element.TraceBinding as ElectricalElementProxy;
-        var bindings = new List<ElectricalElementProxy> { element };
+        var binding = element.TraceBinding as TraceElectricalElementProxy;
+        var bindings = new List<TraceElectricalElementProxy> { element };
 
-        while (binding is { TraceBinding: not CableTrayConduitBaseProxy and not ElectricalElementProxy })
+        while (binding is { TraceBinding: not CableTrayConduitBaseProxy and not TraceElectricalElementProxy })
         {
             if (!elementsToValidBindings.Contains(binding))
                 bindings.Insert(0, binding);
@@ -243,20 +243,20 @@ public class NetworkCalculator
             if (elementsToElements.Contains(binding))
                 elementsToElements.Remove(binding);
 
-            binding = binding.TraceBinding as ElectricalElementProxy;
+            binding = binding.TraceBinding as TraceElectricalElementProxy;
         }
 
         elementsToValidBindings.AddRange(bindings);
     }
 
-    private static ElectricalElementProxy PopElement(ICollection<ElectricalElementProxy> elements)
+    private static TraceElectricalElementProxy PopElement(ICollection<TraceElectricalElementProxy> elements)
     {
         var element = elements.First();
         elements.Remove(element);
         return element;
     }
 
-    private static void SetCircuitsToTraceElements(ElectricalSystemProxy electricalCircuit, TracePath tracePath)
+    private static void SetCircuitsToTraceElements(TraceElectricalSystemProxy electricalCircuit, TracePath tracePath)
     {
         var traceElements = tracePath.TraceElements.Where(x =>
             electricalCircuit.Topology == ConnectionTopology.Star ||
@@ -269,7 +269,7 @@ public class NetworkCalculator
         }
     }
     
-    private void SaveChanges(List<ElectricalSystemProxy> electricalSystems)
+    private void SaveChanges(List<TraceElectricalSystemProxy> electricalSystems)
     {
         _document.Transaction(_ =>
         {
@@ -293,7 +293,7 @@ public class NetworkCalculator
         }, TransactionNames.ModifyElementAttributes);
     }
 
-    private static string GetElectricalCircuitName(ElectricalSystemProxy electricalSystem)
+    private static string GetElectricalCircuitName(TraceElectricalSystemProxy electricalSystem)
     {
         return !string.IsNullOrWhiteSpace(electricalSystem.CableDesignation)
             ? electricalSystem.CableDesignation
@@ -302,7 +302,7 @@ public class NetworkCalculator
                 : electricalSystem.CircuitNumber;
     }
 
-    private void ShowTracePaths(IReadOnlyCollection<ElectricalElementProxy> baseEquipments)
+    private void ShowTracePaths(IReadOnlyCollection<TraceElectricalElementProxy> baseEquipments)
     {
         _document.Transaction(_ =>
         {

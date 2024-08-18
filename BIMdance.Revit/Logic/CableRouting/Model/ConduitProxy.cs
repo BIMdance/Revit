@@ -1,4 +1,4 @@
-namespace BIMdance.Revit.Model.RevitProxy;
+namespace BIMdance.Revit.Logic.CableRouting.Model;
 
 public class ConduitProxy : CableTrayConduitBaseProxy
 {

@@ -1,9 +1,9 @@
-namespace BIMdance.Revit.Model.RevitProxy;
+namespace BIMdance.Revit.Logic.CableRouting.Model;
 
-public class ElectricalElementProxy : TraceElement
+public class TraceElectricalElementProxy : TraceElement
 {
     private List<TraceElement> _traceElements = new();
-    public ElectricalElementProxy() { }
+    public TraceElectricalElementProxy() { }
     public IReadOnlyCollection<TraceElement> TraceElements => _traceElements;
     public long LevelId { get; set; }
     public LevelProxy Level { get; set; }
@@ -28,7 +28,7 @@ public class ElectricalElementProxy : TraceElement
         TraceNetwork = traceElement?.TraceNetwork;
     }
 
-    public void PullTraceBinding(ElectricalElementProxy prototype)
+    public void PullTraceBinding(TraceElectricalElementProxy prototype)
     {
         if (prototype == null) return;
         
