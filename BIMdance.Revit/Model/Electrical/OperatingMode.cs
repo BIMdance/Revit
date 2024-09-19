@@ -16,7 +16,7 @@ public class OperatingMode : ElementProxy, IPrototype<OperatingMode>, IPropertyP
     }
     
     public Dictionary<ElementProxy, bool> ElementSwitches { get; set; } = new();
-    public HashSet<int> DisabledElements { get; private set; } = new();
+    public HashSet<long> DisabledElements { get; private set; } = new();
     public override string ToString() => $"[{RevitId}] <{GetType().Name}> {Name}";
     public override bool Equals(object obj)
     {
