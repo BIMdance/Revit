@@ -40,11 +40,19 @@ global using Kivikko.Json;
 
 global using BIMdance.Revit.Application;
 global using BIMdance.Revit.Logic;
+global using BIMdance.Revit.Logic.Comparers;
 global using BIMdance.Revit.Logic.Converters;
 global using BIMdance.Revit.Logic.Mapping;
 global using BIMdance.Revit.Logic.Utils;
 global using BIMdance.Revit.Model;
+global using BIMdance.Revit.Model.Common;
+global using BIMdance.Revit.Model.Context;
+global using BIMdance.Revit.Model.Electrical;
+global using BIMdance.Revit.Model.Electrical.Base;
+global using BIMdance.Revit.Model.Electrical.MediumVoltage;
+global using BIMdance.Revit.Model.Electrical.Products;
 global using BIMdance.Revit.Model.Geometry;
+global using BIMdance.Revit.Model.Products;
 global using BIMdance.Revit.Model.RevitProxy;
 global using BIMdance.Revit.Resources;
 global using BIMdance.Revit.Utils;
@@ -62,3 +70,5 @@ global using BIMdance.Revit.Utils.Revit.Ribbon.Bindings;
 global using BIMdance.Revit.Utils.Revit.Ribbon.Definitions;
 global using BIMdance.Revit.Utils.Revit.Updaters;
 global using BIMdance.Revit.Utils.Revit.ViewFilters;
+
+global using Material = BIMdance.Revit.Model.Common.Material;

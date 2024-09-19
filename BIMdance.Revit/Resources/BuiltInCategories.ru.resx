@@ -1,0 +1,53 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="CommunicationDevices" xml:space="preserve">
+        <value>Устройства связи</value>
+    </data>
+    <data name="DataDevices" xml:space="preserve">
+        <value>Датчики</value>
+    </data>
+    <data name="ElectricalEquipment" xml:space="preserve">
+        <value>Электрооборудование</value>
+    </data>
+    <data name="ElectricalFixtures" xml:space="preserve">
+        <value>Электрические приборы</value>
+    </data>
+    <data name="FireAlarmDevices" xml:space="preserve">
+        <value>Пожарная сигнализация</value>
+    </data>
+    <data name="Invalid" xml:space="preserve">
+        <value>Invalid</value>
+    </data>
+    <data name="LightingDevices" xml:space="preserve">
+        <value>Выключатели</value>
+    </data>
+    <data name="LightingFixtures" xml:space="preserve">
+        <value>Осветительные приборы</value>
+    </data>
+    <data name="MechanicalEquipment" xml:space="preserve">
+        <value>Оборудование</value>
+    </data>
+    <data name="NurseCallDevices" xml:space="preserve">
+        <value>Медицинское оборудование</value>
+    </data>
+    <data name="SecurityDevices" xml:space="preserve">
+        <value>Охранная сигнализация</value>
+    </data>
+    <data name="SpecialtyEquipment" xml:space="preserve">
+        <value>Специальное оборудование</value>
+    </data>
+    <data name="TelephoneDevices" xml:space="preserve">
+        <value>Телефонные устройства</value>
+    </data>
+</root>

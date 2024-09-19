@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="CoolingMode_AF" xml:space="preserve">
+        <value>Air forced</value>
+    </data>
+    <data name="CoolingMode_AFWF" xml:space="preserve">
+        <value>Air forced water forced</value>
+    </data>
+    <data name="CoolingMode_AFWF_Short" xml:space="preserve">
+        <value>AFWF</value>
+    </data>
+    <data name="CoolingMode_AF_Short" xml:space="preserve">
+        <value>AF</value>
+    </data>
+    <data name="CoolingMode_AN" xml:space="preserve">
+        <value>Air natural</value>
+    </data>
+    <data name="CoolingMode_AN_Short" xml:space="preserve">
+        <value>AN</value>
+    </data>
+    <data name="DisplayName_ActivePower" xml:space="preserve">
+        <value>Active power</value>
+    </data>
+    <data name="DisplayName_ApparentPower" xml:space="preserve">
+        <value>Apparent power</value>
+    </data>
+    <data name="DisplayName_Complementary" xml:space="preserve">
+        <value>Complementary</value>
+    </data>
+    <data name="DisplayName_CoolingMode" xml:space="preserve">
+        <value>Cooling mode</value>
+    </data>
+    <data name="DisplayName_PowerFactor" xml:space="preserve">
+        <value>Power factor</value>
+    </data>
+    <data name="DisplayName_PrimaryCurrent" xml:space="preserve">
+        <value>Rated primary current</value>
+    </data>
+    <data name="DisplayName_PrimaryVoltage" xml:space="preserve">
+        <value>Rated primary voltage</value>
+    </data>
+    <data name="DisplayName_ProtectionIndex" xml:space="preserve">
+        <value>Protection index</value>
+    </data>
+    <data name="DisplayName_RatedCurrent" xml:space="preserve">
+        <value>Rated current</value>
+    </data>
+    <data name="DisplayName_RatedPower" xml:space="preserve">
+        <value>Rated power</value>
+    </data>
+    <data name="DisplayName_RatedVoltage" xml:space="preserve">
+        <value>Rated voltage</value>
+    </data>
+    <data name="DisplayName_SecondaryCurrent" xml:space="preserve">
+        <value>Rated secondary current</value>
+    </data>
+    <data name="DisplayName_SecondaryVoltage" xml:space="preserve">
+        <value>Rated secondary voltage</value>
+    </data>
+    <data name="DisplayName_VectorGroup" xml:space="preserve">
+        <value>Vector group</value>
+    </data>
+    <data name="DisplayName_WindingMaterial" xml:space="preserve">
+        <value>Winding material</value>
+    </data>
+    <data name="Generator" xml:space="preserve">
+        <value>Generator</value>
+    </data>
+    <data name="Motor" xml:space="preserve">
+        <value>Motor</value>
+    </data>
+    <data name="Property_ExtendedWarranty" xml:space="preserve">
+        <value>Extended warranty</value>
+    </data>
+    <data name="Property_FactoryTestReports" xml:space="preserve">
+        <value>Factory test reports</value>
+    </data>
+    <data name="Property_InstallationSupervision" xml:space="preserve">
+        <value>Installation supervision</value>
+    </data>
+    <data name="Property_MaintenanceContract" xml:space="preserve">
+        <value>Maintenance contract</value>
+    </data>
+    <data name="Property_MarinePackaging" xml:space="preserve">
+        <value>Marine packaging</value>
+    </data>
+    <data name="Property_NameplateInRussian" xml:space="preserve">
+        <value>Nameplate in Russian</value>
+    </data>
+    <data name="Property_PassportGOST" xml:space="preserve">
+        <value>Passport GOST</value>
+    </data>
+    <data name="Property_ReducedNoiseLevel" xml:space="preserve">
+        <value>Reduced noise level</value>
+    </data>
+    <data name="Property_SupplyOfSpareParts" xml:space="preserve">
+        <value>Supply of spare parts</value>
+    </data>
+    <data name="Property_VibrationDampingStands" xml:space="preserve">
+        <value>Vibration damping stands</value>
+    </data>
+    <data name="Transformer" xml:space="preserve">
+        <value>Transformer</value>
+    </data>
+</root>

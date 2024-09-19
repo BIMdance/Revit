@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="CommunicationDevices" xml:space="preserve">
+        <value>Communication Devices</value>
+    </data>
+    <data name="DataDevices" xml:space="preserve">
+        <value>Data Devices</value>
+    </data>
+    <data name="ElectricalEquipment" xml:space="preserve">
+        <value>Electrical Equipment</value>
+    </data>
+    <data name="ElectricalFixtures" xml:space="preserve">
+        <value>Electrical Fixtures</value>
+    </data>
+    <data name="FireAlarmDevices" xml:space="preserve">
+        <value>Fire Alarm Devices</value>
+    </data>
+    <data name="Invalid" xml:space="preserve">
+        <value>Invalid</value>
+    </data>
+    <data name="LightingDevices" xml:space="preserve">
+        <value>Lighting Devices</value>
+    </data>
+    <data name="LightingFixtures" xml:space="preserve">
+        <value>Lighting Fixtures</value>
+    </data>
+    <data name="MechanicalEquipment" xml:space="preserve">
+        <value>Mechanical Equipment</value>
+    </data>
+    <data name="NurseCallDevices" xml:space="preserve">
+        <value>Nurse Call Devices</value>
+    </data>
+    <data name="SecurityDevices" xml:space="preserve">
+        <value>Security Devices</value>
+    </data>
+    <data name="SpecialtyEquipment" xml:space="preserve">
+        <value>Specialty Equipment</value>
+    </data>
+    <data name="TelephoneDevices" xml:space="preserve">
+        <value>Telephone Devices</value>
+    </data>
+</root>

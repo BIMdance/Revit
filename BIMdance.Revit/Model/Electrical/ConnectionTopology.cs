@@ -1,4 +1,4 @@
-namespace BIMdance.Revit.Model;
+namespace BIMdance.Revit.Model.Electrical;
 
 public enum ConnectionTopology
 {

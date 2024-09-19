@@ -73,30 +73,199 @@
         <Compile Include="Logic\CableRouting\NetworkElements.cs" />
         <Compile Include="Logic\CableRouting\NetworkPathfinder.cs" />
         <Compile Include="Logic\CableRouting\Usings.cs" />
+        <Compile Include="Logic\Comparers\DoubleComparer.cs" />
+        <Compile Include="Logic\Comparers\DoubleEqualityComparer.cs" />
+        <Compile Include="Logic\Comparers\IntComparer.cs" />
+        <Compile Include="Logic\Comparers\ObjectComparer.cs" />
+        <Compile Include="Logic\Comparers\RevitProxyComparer.cs" />
         <Compile Include="Logic\Constants.cs" />
         <Compile Include="Logic\Converters\BuildingConverter.cs" />
         <Compile Include="Logic\Converters\ElectricalSystemConverter.cs" />
         <Compile Include="Logic\Converters\ProxyConverter.cs" />
+        <Compile Include="Logic\DataAccess\ChangedElements.cs" />
+        <Compile Include="Logic\DataAccess\Context\ChangesSavingEventHandler.cs" />
+        <Compile Include="Logic\DataAccess\Context\Context.cs" />
+        <Compile Include="Logic\DataAccess\Context\ContextInitializer.cs" />
+        <Compile Include="Logic\DataAccess\Context\EntityEntry.cs" />
+        <Compile Include="Logic\DataAccess\Context\EntityState.cs" />
+        <Compile Include="Logic\DataAccess\Context\ISet.cs" />
+        <Compile Include="Logic\DataAccess\Context\IUnitOfWork.cs" />
+        <Compile Include="Logic\DataAccess\Context\Set.cs" />
+        <Compile Include="Logic\DataAccess\Context\UnitOfWork.cs" />
+        <Compile Include="Logic\DataAccess\ElementClipboard.cs" />
+        <Compile Include="Logic\DataAccess\ElementProvider.cs" />
+        <Compile Include="Logic\DataAccess\IRepositoryInitializer.cs" />
+        <Compile Include="Logic\DataAccess\MemorySet.cs" />
+        <Compile Include="Logic\DataAccess\Set.cs" />
         <Compile Include="Logic\Mapping\RevitMapper.cs" />
         <Compile Include="Logic\SharedParameters.cs" />
         <Compile Include="Logic\Utils\GeometryUtils.cs" />
+        <Compile Include="Logic\Utils\ModelNameUtils.cs" />
         <Compile Include="Logic\Utils\SegmentFilter.cs" />
-        <Compile Include="Model\ConnectionTopology.cs" />
+        <Compile Include="Model\Attributes\ResourceDescriptionAttribute.cs" />
+        <Compile Include="Model\Attributes\ShortDescriptionAttribute.cs" />
+        <Compile Include="Model\Common\BindingValues.cs" />
+        <Compile Include="Model\Common\Dimensions.cs" />
+        <Compile Include="Model\Common\IPropertyPrototype.cs" />
+        <Compile Include="Model\Common\IPrototype.cs" />
+        <Compile Include="Model\Common\Material.cs" />
+        <Compile Include="Model\Common\PrototypeUtils.cs" />
+        <Compile Include="Model\Common\Range.cs" />
+        <Compile Include="Model\Context\ElectricalContext.cs" />
+        <Compile Include="Model\Context\TransactionGroupProvider.cs" />
+        <Compile Include="Model\ElectricalQuantity.cs" />
+        <Compile Include="Model\Electrical\AccuracyClass.cs" />
+        <Compile Include="Model\Electrical\Base\BlankSource.cs" />
+        <Compile Include="Model\Electrical\Base\ElectricalBase.cs" />
+        <Compile Include="Model\Electrical\Base\ElectricalEquipmentProxy.cs" />
+        <Compile Include="Model\Electrical\Base\ElectricalSource.cs" />
+        <Compile Include="Model\Electrical\Base\EquipmentSet.cs" />
+        <Compile Include="Model\Electrical\Base\EquipmentUnit.cs" />
+        <Compile Include="Model\Electrical\Base\InternalConnector.cs" />
+        <Compile Include="Model\Electrical\Bus.cs" />
+        <Compile Include="Model\Electrical\Cabling.cs" />
+        <Compile Include="Model\Electrical\CablingEnvironment.cs" />
+        <Compile Include="Model\Electrical\CircuitPowerParameters.cs" />
+        <Compile Include="Model\Electrical\ConnectionTopology.cs" />
+        <Compile Include="Model\Electrical\ConnectorExtension.cs" />
+        <Compile Include="Model\Electrical\ConnectorOperatingModes.cs" />
+        <Compile Include="Model\Electrical\CurrentTimePoint.cs" />
+        <Compile Include="Model\Electrical\ElectricalConstants.cs" />
+        <Compile Include="Model\Electrical\ElectricalProduct.cs" />
+        <Compile Include="Model\Electrical\ElectricalProducts.cs" />
+        <Compile Include="Model\Electrical\ElectricalSettings.cs" />
+        <Compile Include="Model\Electrical\ElectricalSystemGroup.cs" />
+        <Compile Include="Model\Electrical\EstimatedPowerParameters.cs" />
+        <Compile Include="Model\Electrical\Factories\.ElectricalFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\.ElectricalFactoryBase.cs" />
+        <Compile Include="Model\Electrical\Factories\ElectricalElementFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\ElectricalGeneratorFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\ElectricalNetworkFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\ElectricalSystemFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\ElectricalSystemGroupFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\OperatingModeFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\SwitchBoardFactory.cs" />
+        <Compile Include="Model\Electrical\Factories\TransformerFactory.cs" />
+        <Compile Include="Model\Electrical\Function.cs" />
+        <Compile Include="Model\Electrical\Generator.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\GasExhaust.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\InsulationType.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\InternalArcClassification.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\Properties\ElectricalCharacteristics.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\Properties\ElectricalCharacteristicsSource.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\Properties\SwitchGearVoltage.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\RelayFunction.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\SwitchGear.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\SwitchGearFunction.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\SwitchGearOption.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\SwitchGearOptions.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\SwitchGearSeries.cs" />
+        <Compile Include="Model\Electrical\MediumVoltage\SwitchGearUnit.cs" />
+        <Compile Include="Model\Electrical\Network.cs" />
+        <Compile Include="Model\Electrical\NeutralSystem.cs" />
+        <Compile Include="Model\Electrical\OperatingMode.cs" />
+        <Compile Include="Model\Electrical\Phase.cs" />
+        <Compile Include="Model\Electrical\PhasesNumber.cs" />
+        <Compile Include="Model\Electrical\PhaseUtils.cs" />
+        <Compile Include="Model\Electrical\PowerParameters.cs" />
+        <Compile Include="Model\Electrical\Products\Cable.cs" />
+        <Compile Include="Model\Electrical\Products\CableInsulation.cs" />
+        <Compile Include="Model\Electrical\Products\CableProperty.cs" />
+        <Compile Include="Model\Electrical\Products\CableSeries.cs" />
+        <Compile Include="Model\Electrical\Products\Characteristics\MagneticTrippingLimit.cs" />
+        <Compile Include="Model\Electrical\Products\Characteristics\Poles.cs" />
+        <Compile Include="Model\Electrical\Products\Conductor.cs" />
+        <Compile Include="Model\Electrical\Products\ConductorCount.cs" />
+        <Compile Include="Model\Electrical\Products\ConductorType.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\AuxiliaryContact.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\CurrentTransformers.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\CurrentTransformerZeroSequence.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\FaultPassageIndicator.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\Fuse.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\ICompatibleComponents.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\MeasuringVoltageTransformer.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\MotorMechanism.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\ProtectionRelay.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\ShuntTripRelease.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\SwitchController.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\SwitchGearComponent.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\SwitchGearComponentCollections.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\SwitchGearComponents.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\SwitchGearSwitch.cs" />
+        <Compile Include="Model\Electrical\Products\SwitchGears\UndervoltageRelease.cs" />
+        <Compile Include="Model\Electrical\ProtectionIndex.cs" />
+        <Compile Include="Model\Electrical\ResistanceReactance.cs" />
+        <Compile Include="Model\Electrical\SwitchBoard.cs" />
+        <Compile Include="Model\Electrical\SwitchBoardUnit.cs" />
+        <Compile Include="Model\Electrical\SwitchMountType.cs" />
+        <Compile Include="Model\Electrical\ThreePhasesParameters.cs" />
+        <Compile Include="Model\Electrical\Transformers\CoolingMode.cs" />
+        <Compile Include="Model\Electrical\Transformers\Transformer.cs" />
+        <Compile Include="Model\Electrical\Transformers\TransformerLoadLossesLevel.cs" />
+        <Compile Include="Model\Electrical\Transformers\TransformerProduct.cs" />
+        <Compile Include="Model\Electrical\Transformers\TransformerProperty.cs" />
+        <Compile Include="Model\Electrical\Transformers\TransformerSeries.cs" />
+        <Compile Include="Model\Electrical\Transformers\VectorGroup.cs" />
         <Compile Include="Model\Geometry\Line3D.cs" />
         <Compile Include="Model\Geometry\Normal.cs" />
         <Compile Include="Model\Geometry\Point3D.cs" />
         <Compile Include="Model\Geometry\Vector.cs" />
+        <Compile Include="Model\Products\BaseProduct.cs" />
+        <Compile Include="Model\Products\CharacteristicConverter.cs" />
+        <Compile Include="Model\Products\EquipmentSelectionMode.cs" />
+        <Compile Include="Model\Products\IManufactured.cs" />
+        <Compile Include="Model\Products\Manufactured.cs" />
+        <Compile Include="Model\Products\Product.cs" />
+        <Compile Include="Model\Products\ProductAdvantages.cs" />
+        <Compile Include="Model\Products\ProductCharacteristic.cs" />
+        <Compile Include="Model\Products\ProductCharacteristicExtension.cs" />
+        <Compile Include="Model\Products\ProductRange.cs" />
+        <Compile Include="Model\Products\SelectAndConfigSetting.cs" />
+        <Compile Include="Model\Products\SelectorProduct.cs" />
+        <Compile Include="Model\Products\SelectorProductSetting.cs" />
         <Compile Include="Model\RevitProxy\BuiltInCategoryProxy.cs" />
+        <Compile Include="Model\RevitProxy\CircuitTypeProxy.cs" />
+        <Compile Include="Model\RevitProxy\ConnectorProxy.cs" />
+        <Compile Include="Model\RevitProxy\DemandFactorProxy.cs" />
+        <Compile Include="Model\RevitProxy\DemandFactorRuleProxy.cs" />
+        <Compile Include="Model\RevitProxy\DemandFactorValueProxy.cs" />
         <Compile Include="Model\RevitProxy\DisplayUnitTypeProxy.cs" />
+        <Compile Include="Model\RevitProxy\DistributionSystemProxy.cs" />
         <Compile Include="Model\RevitProxy\ElectricalConnectorProxy.cs" />
+        <Compile Include="Model\RevitProxy\ElectricalElementProxy.cs" />
+        <Compile Include="Model\RevitProxy\ElectricalPhaseConfigurationProxy.cs" />
+        <Compile Include="Model\RevitProxy\ElectricalSystemProxy.cs" />
+        <Compile Include="Model\RevitProxy\ElectricalSystemTypeProxy.cs" />
         <Compile Include="Model\RevitProxy\ElementProxy.cs" />
         <Compile Include="Model\RevitProxy\FamilyInstanceReferenceTypeProxy.cs" />
         <Compile Include="Model\RevitProxy\LevelProxy.cs" />
+        <Compile Include="Model\RevitProxy\LoadClassificationProxy.cs" />
         <Compile Include="Model\RevitProxy\ParameterGroupProxy.cs" />
         <Compile Include="Model\RevitProxy\ParameterTypeProxy.cs" />
         <Compile Include="Model\RevitProxy\RoomProxy.cs" />
         <Compile Include="Model\RevitProxy\UnitTypeProxy.cs" />
+        <Compile Include="Model\RevitProxy\VoltageTypeProxy.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Resources\BuiltInCategories.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>BuiltInCategories.resx</DependentUpon>
+        </Compile>
+        <Compile Include="Resources\ElectricalSystemTypes.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>ElectricalSystemTypes.resx</DependentUpon>
+        </Compile>
+        <Compile Include="Resources\Equipment.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Equipment.resx</DependentUpon>
+        </Compile>
+        <Compile Include="Resources\ModelLocalization.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>ModelLocalization.resx</DependentUpon>
+        </Compile>
         <Compile Include="Resources\RevitSourceFiles.Designer.cs" />
         <Compile Include="Resources\TransactionNames.Designer.cs">
           <DesignTime>True</DesignTime>
@@ -112,15 +281,19 @@
         <Compile Include="Utils\Common\BitmapUtils.cs" />
         <Compile Include="Utils\Common\CollectionExtension.cs" />
         <Compile Include="Utils\Common\CsvUtils.cs" />
+        <Compile Include="Utils\Common\DeclensionUtils.cs" />
         <Compile Include="Utils\Common\DoubleExtension.cs" />
         <Compile Include="Utils\Common\EnumerableExtension.cs" />
         <Compile Include="Utils\Common\FileUtils.cs" />
         <Compile Include="Utils\Common\MathConstants.cs" />
         <Compile Include="Utils\Common\NameUtils.cs" />
+        <Compile Include="Utils\Common\ObjectExtension.cs" />
         <Compile Include="Utils\Common\SearchUtils.cs" />
         <Compile Include="Utils\Common\StringComparer.cs" />
         <Compile Include="Utils\Common\StringUtils.cs" />
+        <Compile Include="Utils\Common\UniqueCollection.cs" />
         <Compile Include="Utils\Common\UnitConverter.cs" />
+        <Compile Include="Utils\Common\UpdatableList.cs" />
         <Compile Include="Utils\DependencyInjection\IServiceCollection.cs" />
         <Compile Include="Utils\DependencyInjection\IServiceScope.cs" />
         <Compile Include="Utils\DependencyInjection\IServiceScopeFactory.cs" />
@@ -245,6 +418,34 @@
       <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2024.0.0" />
     </ItemGroup>
     <ItemGroup>
+      <EmbeddedResource Include="Resources\BuiltInCategories.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>BuiltInCategories.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\BuiltInCategories.ru.resx">
+        <DependentUpon>BuiltInCategories.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\ElectricalSystemTypes.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ElectricalSystemTypes.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\ElectricalSystemTypes.ru.resx">
+        <DependentUpon>ElectricalSystemTypes.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\Equipment.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Equipment.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\Equipment.ru.resx">
+        <DependentUpon>Equipment.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\ModelLocalization.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ModelLocalization.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Resources\ModelLocalization.ru.resx">
+        <DependentUpon>ModelLocalization.resx</DependentUpon>
+      </EmbeddedResource>
       <EmbeddedResource Include="Resources\RevitSourceFiles.resx">
         <Generator>ResXFileCodeGenerator</Generator>
       </EmbeddedResource>
@@ -257,6 +458,8 @@
       </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
+      <Folder Include="Logic\Electrical\Calculators\" />
+      <Folder Include="Model\Electrical\Enums\" />
       <Folder Include="Updaters\" />
     </ItemGroup>
     <ItemGroup>

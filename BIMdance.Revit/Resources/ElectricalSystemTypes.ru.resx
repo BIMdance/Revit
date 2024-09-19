@@ -1,0 +1,48 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="Communication" xml:space="preserve">
+        <value>Беспроводные устройства связи</value>
+    </data>
+    <data name="Controls" xml:space="preserve">
+        <value>Управление</value>
+    </data>
+    <data name="Data" xml:space="preserve">
+        <value>Данные</value>
+    </data>
+    <data name="FireAlarm" xml:space="preserve">
+        <value>Пожарная сигнализация</value>
+    </data>
+    <data name="NurseCall" xml:space="preserve">
+        <value>Устройства вызова и оповещения</value>
+    </data>
+    <data name="PowerBalanced" xml:space="preserve">
+        <value>Мощность - Сбалансированная</value>
+    </data>
+    <data name="PowerUnbalanced" xml:space="preserve">
+        <value>Мощность - Несбалансированная</value>
+    </data>
+    <data name="PowerCircuit" xml:space="preserve">
+        <value>Силовые цепи</value>
+    </data>
+    <data name="Security" xml:space="preserve">
+        <value>Охранная сигнализация</value>
+    </data>
+    <data name="Telephone" xml:space="preserve">
+        <value>Проводные устройства связи</value>
+    </data>
+    <data name="Undefined" xml:space="preserve">
+        <value>Не определено</value>
+    </data>
+</root>

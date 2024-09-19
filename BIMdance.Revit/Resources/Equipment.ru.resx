@@ -1,0 +1,105 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <data name="CoolingMode_AF" xml:space="preserve">
+        <value>Принудительное воздушное охлаждение</value>
+    </data>
+    <data name="CoolingMode_AN" xml:space="preserve">
+        <value>Естественное воздушное охлаждение</value>
+    </data>
+    <data name="DisplayName_ActivePower" xml:space="preserve">
+        <value>Активная мощность</value>
+    </data>
+    <data name="DisplayName_ApparentPower" xml:space="preserve">
+        <value>Полная мощность</value>
+    </data>
+    <data name="DisplayName_Complementary" xml:space="preserve">
+        <value>Дополнительные характеристики</value>
+    </data>
+    <data name="DisplayName_CoolingMode" xml:space="preserve">
+        <value>Тип охлаждения</value>
+    </data>
+    <data name="DisplayName_PowerFactor" xml:space="preserve">
+        <value>Коэффициент мощности</value>
+    </data>
+    <data name="DisplayName_PrimaryCurrent" xml:space="preserve">
+        <value>Номинальный ток обмотки ВН</value>
+    </data>
+    <data name="DisplayName_PrimaryVoltage" xml:space="preserve">
+        <value>Номинальное напряжение обмотки ВН</value>
+    </data>
+    <data name="DisplayName_ProtectionIndex" xml:space="preserve">
+        <value>Класс защиты</value>
+    </data>
+    <data name="DisplayName_RatedCurrent" xml:space="preserve">
+        <value>Номинальный ток</value>
+    </data>
+    <data name="DisplayName_RatedPower" xml:space="preserve">
+        <value>Номинальная мощность</value>
+    </data>
+    <data name="DisplayName_RatedVoltage" xml:space="preserve">
+        <value>Номинальное напряжение</value>
+    </data>
+    <data name="DisplayName_SecondaryCurrent" xml:space="preserve">
+        <value>Номинальный ток обмотки НН</value>
+    </data>
+    <data name="DisplayName_SecondaryVoltage" xml:space="preserve">
+        <value>Номинальное напряжение обмотки НН</value>
+    </data>
+    <data name="DisplayName_VectorGroup" xml:space="preserve">
+        <value>Группа соединения обмоток</value>
+    </data>
+    <data name="DisplayName_WindingMaterial" xml:space="preserve">
+        <value>Материал обмотки</value>
+    </data>
+    <data name="Generator" xml:space="preserve">
+        <value>Генератор</value>
+    </data>
+    <data name="Motor" xml:space="preserve">
+        <value>Двигатель</value>
+    </data>
+    <data name="Property_ExtendedWarranty" xml:space="preserve">
+        <value>Расширенная гарантия</value>
+    </data>
+    <data name="Property_FactoryTestReports" xml:space="preserve">
+        <value>Протоколы заводских испытаний</value>
+    </data>
+    <data name="Property_InstallationSupervision" xml:space="preserve">
+        <value>Шеф-монтаж</value>
+    </data>
+    <data name="Property_MaintenanceContract" xml:space="preserve">
+        <value>Договор на техническое обслуживание</value>
+    </data>
+    <data name="Property_MarinePackaging" xml:space="preserve">
+        <value>Морская упаковка</value>
+    </data>
+    <data name="Property_NameplateInRussian" xml:space="preserve">
+        <value>Табличка на русском языке</value>
+    </data>
+    <data name="Property_PassportGOST" xml:space="preserve">
+        <value>Паспорт ГОСТ</value>
+    </data>
+    <data name="Property_ReducedNoiseLevel" xml:space="preserve">
+        <value>Сниженный уровень потерь и шума</value>
+    </data>
+    <data name="Property_SupplyOfSpareParts" xml:space="preserve">
+        <value>Поставка ЗИП</value>
+    </data>
+    <data name="Property_VibrationDampingStands" xml:space="preserve">
+        <value>Виброгасящие подставки</value>
+    </data>
+    <data name="Transformer" xml:space="preserve">
+        <value>Трансформатор</value>
+    </data>
+</root>
